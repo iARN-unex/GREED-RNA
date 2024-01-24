@@ -1,0 +1,121 @@
+
+-----------------------------------------------------------------------
+   _____ _____  ______ ______ _____             _____  _   _           
+  / ____|  __ \|  ____|  ____|  __ \           |  __ \| \ | |   /\     
+ | |  __| |__) | |__  | |__  | |  | |  ______  | |__) |  \| |  /  \    
+ | | |_ |  _  /|  __| |  __| | |  | | |______| |  _  /| . ` | / /\ \   
+ | |__| | | \ \| |____| |____| |__| |          | | \ \| |\  |/ ____ \  
+  \_____|_|  \_\______|______|_____/           |_|  \_\_| \_/_/    \_\ 
+       
+                                       -- A. Rubio-Largo et al. 2023
+-----------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------
+CONFIGURATION: 
+
+ * TARGET:           ..((((((((.....))))((((.....))))))))..
+ * STOPPING:         86400 secs.
+ * SEED:             3
+ * NO. OF SOLUTIONS: 1
+ * max. GC-cont.:    0.48
+ * MODEL:            TURNER2004
+ * MUTATION PROB:    0.01
+ * STAGNATION LIMIT: 50
+------------------------------------------------------------------------------------------------------------------
+
+
+ (1) Let's minimize the base-pair distance between predicted and target structures
+    -> Min(Base-pair distance), min(Hamming distance), max(probability over ensemble), min(partition function), min(ensemble defect), min(%GC-content)
+
+
+	 ->['AACCCCCCCCAAAAAGGGGCCCCAAAAAGGGGGGGGAA', '..((((((((.....((....)).....))))))))..', 0.3684, -0.029583572478067414, -21.0698, 0.4122, 1.0, 0.2105]
+	 ->['AACCCCCCCCAAAAAGGGGCCCCAAAAAGGGGGGGGAA', '..((((((((.....((....)).....))))))))..', 0.3684, -0.029583572478067414, -21.0698, 0.4122, 1.0, 0.2105]
+
+
+    -> Found sequence! Elapsed time:                   0.014200448989868164 secs.
+
+
+ (2) We found a sequence that folds exactly like the target structure. Let's minimize the GC-content
+    -> ORDER: Min(Base-pair distance), min(Hamming distance), min(GC-content), min(partition function), min(ensemble defect), max(probability over ensemble))
+
+
+	 >>> Resetting the solution to avoid local optima.
+	 ->['AAGGGGGGGGAAAAACCCCGGGGAAAAACCCCCCCCAA', '..((((((((.....((....)).....))))))))..', 0.3684, -0.07575312596905262, -21.1903, 0.3881, 1.0, 0.2105]
+	 ->['AAGGGGGGGGAAAAACCCCGGGGAAAAACCCCUCCCAA', '..(((((((......))))((((.....)))).)))..', 0.2368, -0.06449063063777098, -18.7895, 0.307, 1.0, 0.0526]
+	 ->['UAGGGGAGGGAAAAACCCUGGGGAAAACCCCCUCCCAA', '..((((((((.....))))((((.....))))))))..', 0.0, -0.18527444726953526, -16.2391, 0.3535, 0.8333, 0.0]
+	 ->['GAGUGGAGGGAAGAACCCUGGGGAAAACCCCCUCACAU', '..((((((((.....))))((((.....))))))))..', 0.0, -0.3669741632397785, -13.5178, 0.1459, 0.75, 0.0]
+	 ->['GAGUGUAGGGAAGUACCCUGGUGAAAACCGCCGCACAU', '..((((((((.....))))((((.....))))))))..', 0.0, -0.6896078245742636, -11.129, 0.0501, 0.6667, 0.0]
+	 ->['GAGUGUAGGGAAGUACCCUGGUGAAAACCGCCGCAUAC', '..((((((((.....))))((((.....))))))))..', 0.0, -0.36495935481069863, -9.7212, 0.1459, 0.5833, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['AAGGGGGGGGAAAAACCCCGGGGAAAAACCCCCCCCAA', '..((((((((.....((....)).....))))))))..', 0.3684, -0.07575312596905262, -21.1903, 0.3881, 1.0, 0.2105]
+	 ->['AAGGGGGGGGAAAAACCCCGGGGAAAAACCCCCCCCAA', '..((((((((.....((....)).....))))))))..', 0.3684, -0.07575312596905262, -21.1903, 0.3881, 1.0, 0.2105]
+	 ->['AAGGGGGGGGAAAAACCCCGGGGAAAAACCCCUCCCAA', '..(((((((......))))((((.....)))).)))..', 0.2368, -0.06449063063777098, -18.7895, 0.307, 1.0, 0.0526]
+	 ->['AAGGGGCGGGCCAAACCCGGGGGAACGACCCCUCCCAA', '..((((((((.....))))((((.....))))))))..', 0.0, -0.23853617738366606, -16.1833, 0.2086, 0.9167, 0.0]
+	 ->['AAGGAGCGGGCCAAACCCGGGGGAACGACCCCUUCCAA', '..((((((((.....))))((((.....))))))))..', 0.0, -0.2708409360934006, -14.3051, 0.162, 0.8333, 0.0]
+	 ->['AAGGAGCGGGCCAAACCCGAGGCAACGAGCCUUUCCAC', '..((((((((.....))))((((.....))))))))..', 0.0, -0.35469493640019345, -12.5388, 0.1941, 0.75, 0.0]
+	 ->['AAGGAGCUGGCCAAACCAGAGCCACCGAGGCUUUCCAC', '..((((((((.....))))((((.....))))))))..', 0.0, -0.4143132794038563, -10.9431, 0.0963, 0.6667, 0.0]
+	 ->['AAGGAGUUGGCCAAACCAAAGCCACCGAGGCUUUCCAC', '..((((((((.....))))((((.....))))))))..', 0.0, -0.15368249199041747, -9.2543, 0.1899, 0.5833, 0.0]
+	 ->['GAGGAUUUGGCCGAACCAAAGUCAGCGAGACUGUCCGC', '..((((((((.....))))((((.....))))))))..', 0.0, -0.22842886474831856, -8.11, 0.3413, 0.5, 0.0]
+
+
+    -> Finished!! Elaapsed time:                   0.4802670478820801 secs.
+
+
+
+
+RNA sequences found with GC-content <= 0.48:
+## GAGGAUUUGGCCGAACCAAAGUAAGCGAUACUGUCCGC 0.4166666666666667
+
+RNA sequences found with GC-content > 0.48:
+@@ AACCCCCCGCAAAAAGCGGCCCCAAAAAGGGGGGGGAA 1.0
+@@ AACCCCGCGCAAAAAGCGCCCCCAAAAAGGGGGGGGAA 1.0
+@@ AACCCCGCGCAAAAAGCGCGCCCAAAAAGGGCGGGGAA 1.0
+@@ AAGCCCGCGCAAAAAGCGCGCCCAAAAAGGGCGGGCAA 1.0
+@@ AAGGGGAGGGAAAAACCCUGGGGAAAAACCCCUCCCAA 0.8333333333333334
+@@ AAGGGGAGGGAAAAACCCUGGGGAAAACCCCCUCCCAA 0.8333333333333334
+@@ UAGGGGAGGGAAAAACCCUGGGGAAAACCCCCUCCCAA 0.8333333333333334
+@@ UAGUGGAGGGAAAAACCCUGGGGAAAACCCCCUCACAA 0.75
+@@ UAGUGGAGGGAAGAACCCUGGGGAAAACCCCCUCACAA 0.75
+@@ UAGUGGAGGGAAGAACCCUGGGGAAAACCCCCUCACAU 0.75
+@@ GAGUGGAGGGAAGAACCCUGGGGAAAACCCCCUCACAU 0.75
+@@ GAGUGGAGGGAAGAACCCUGGUGAAAACCGCCUCACAU 0.6666666666666666
+@@ GAGUGUAGGGAAGAACCCUGGUGAAAACCGCCGCACAU 0.6666666666666666
+@@ GAGUGUAGGGAAGUACCCUGGUGAAAACCGCCGCACAU 0.6666666666666666
+@@ GAGUGUAGGGAAGUACCCUGGUGAAAACCGCCGCAUAU 0.5833333333333334
+@@ GAGUGUAGGGAAGUACCCUGGUGAAAACCGCCGCAUAC 0.5833333333333334
+@@ GAGUGUAGGGAAGUACCCUGGUUAAAACGGCCGCAUAC 0.5
+@@ GAGUGUAGGGAAGUACCCUGGAUAAAACGUCCGCAUAC 0.5
+@@ GAGUGUAGGGAAGUACCCUGGAUAACACGUCCGCAUAC 0.5
+@@ GAGUGUAGGGAGGUACCCUGGAUAACACGUCCGCAUAC 0.5
+@@ GAGUGUAGGGAGGUACCCUGGAUACCACGUCCGCAUAC 0.5
+@@ AAGGGGCGGGAAAAACCCGGGGGAAAAACCCCUCCCAA 0.9166666666666667
+@@ AAGGGGCGGGAAAAACCCGGGGGAACAACCCCUCCCAA 0.9166666666666667
+@@ AAGGGGCGGGACAAACCCGGGGGAACAACCCCUCCCAA 0.9166666666666667
+@@ AAGGGGCGGGACAAACCCGGGGGAACCACCCCUCCCAA 0.9166666666666667
+@@ AAGGGGCGGGCCAAACCCGGGGGAACCACCCCUCCCAA 0.9166666666666667
+@@ AAGGGGCGGGCCAAACCCGGGGGAACGACCCCUCCCAA 0.9166666666666667
+@@ AAGGAGCGGGCCAAACCCGGGGGAACGACCCCUUCCAA 0.8333333333333334
+@@ AAGGAGCGGGCCAAACCCGAGGGAACGACCCUUUCCAA 0.75
+@@ AAGGAGCGGGCCAAACCCGAGGGAACGACCCUUUCCAC 0.75
+@@ AAGGAGCGGGCCAAACCCGAGGCAACGAGCCUUUCCAC 0.75
+@@ AAGGAGCUGGCCAAACCAGAGGCAACGAGCCUUUCCAC 0.6666666666666666
+@@ AAGGAGCUGGCCAAACCAGAGCCAACGAGGCUUUCCAC 0.6666666666666667
+@@ AAGGAGCUGGCCAAACCAGAGCCACCGAGGCUUUCCAC 0.6666666666666667
+@@ AAGGAGUUGGCCAAACCAAAGCCACCGAGGCUUUCCAC 0.5833333333333334
+@@ AAGGAGUUGGCCAAACCAAAGUCACCGAGACUUUCCAC 0.5
+@@ AAGGAGUUGGCCAAACCAAAGUCAGCGAGACUUUCCAC 0.5
+@@ GAGGAGUUGGCCAAACCAAAGUCAGCGAGACUUUCCAC 0.5
+@@ GAGGAGUUGGCCGAACCAAAGUCAGCGAGACUUUCCAC 0.5
+@@ GAGGAGUUGGCCGAACCAAAGUCAGCGAGACUUUCCGC 0.5
+@@ GAGGAUUUGGCCGAACCAAAGUCAGCGAGACUAUCCGC 0.5
+@@ GAGGAUUUGGCCGAACCAAAGUCAGCGAGACUGUCCGC 0.5
+
+
+Elapsed time:                   0.481579065322876 secs.
+Number of function evaluations: 301
+----------------------------------------------------------------------
+
+
+---------------------------------------
+ FINISHED SUCCESSFULLY 
+---------------------------------------
