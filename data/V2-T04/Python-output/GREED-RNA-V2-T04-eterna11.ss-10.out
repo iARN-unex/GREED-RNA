@@ -1,0 +1,81 @@
+
+-----------------------------------------------------------------------
+   _____ _____  ______ ______ _____             _____  _   _           
+  / ____|  __ \|  ____|  ____|  __ \           |  __ \| \ | |   /\     
+ | |  __| |__) | |__  | |__  | |  | |  ______  | |__) |  \| |  /  \    
+ | | |_ |  _  /|  __| |  __| | |  | | |______| |  _  /| . ` | / /\ \   
+ | |__| | | \ \| |____| |____| |__| |          | | \ \| |\  |/ ____ \  
+  \_____|_|  \_\______|______|_____/           |_|  \_\_| \_/_/    \_\ 
+       
+                                       -- A. Rubio-Largo et al. 2023
+-----------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------
+CONFIGURATION: 
+
+ * TARGET:           ((((((.((((((((....))))).)).).))))))
+ * STOPPING:         86400 secs.
+ * SEED:             10
+ * NO. OF SOLUTIONS: 1
+ * max. GC-cont.:    0.48
+ * MODEL:            TURNER2004
+ * MUTATION PROB:    0.01
+ * STAGNATION LIMIT: 50
+------------------------------------------------------------------------------------------------------------------
+
+
+ (1) Let's minimize the base-pair distance between predicted and target structures
+    -> Min(Base-pair distance), min(Hamming distance), max(probability over ensemble), min(partition function), min(ensemble defect), min(%GC-content)
+
+
+	 ->['CCCCCCACCCCCCCCAAAAGGGGGAGGAGAGGGGGG', '((((((.((((((((....))))).)).).))))))', 0.0, -0.5622393803459644, -27.3549, 0.0957, 1.0, 0.0]
+
+
+    -> Found sequence! Elapsed time:                   0.014773368835449219 secs.
+
+
+ (2) We found a sequence that folds exactly like the target structure. Let's minimize the GC-content
+    -> ORDER: Min(Base-pair distance), min(Hamming distance), min(GC-content), min(partition function), min(ensemble defect), max(probability over ensemble))
+
+
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGGGAGGGGGGGGAAAACCCCCACCACACCCCCC', '((((((.(((((((.....))))).))...))))))', 0.4167, -0.23989455357908016, -27.4798, 0.3035, 1.0, 0.0556]
+	 ->['GGGUGGAGGGGGGGGAAAACCCCCACCACACCACCC', '((((((.(((((((.....))))).))...))))))', 0.4167, -0.27087374927210645, -25.105, 0.2659, 0.9231, 0.0556]
+	 ->['GGGUGGAGAGGGGGGAAAACCCCCACUACACCACCC', '((((((.((((((((....))))).)).).))))))', 0.0, -0.45559457663131553, -22.6845, 0.1421, 0.8571, 0.0]
+	 ->['GGGUGGAGAGGGGGGAAAACCUCCACUACACCACCC', '((((((.((((((((....))))).)).).))))))', 0.0, -0.45018319492257886, -19.6919, 0.143, 0.7857, 0.0]
+	 ->['GGGUGGAGAGGGGGGGAAACCUCCACUACGCCACUC', '((((((.((((((((....))))).)).).))))))', 0.0, -0.6845586544405152, -18.8336, 0.0576, 0.7143, 0.0]
+	 ->['GGGUGGAGAGGGGAGGAAACUUCCACUACGCCACUC', '((((((.((((((((....))))).)).).))))))', 0.0, -0.687934632116237, -16.8305, 0.0488, 0.6429, 0.0]
+	 ->['GGGUGGAGAGGGGAUGAAAGUUCCACUACGCCACUC', '((((((.((((((((....))))).)).).))))))', 0.0, -0.6463829782003523, -14.5689, 0.0551, 0.5714, 0.0]
+	 ->['UGGUGGAGAGGGGAUGAAAAUUCCACUACGCCACUA', '((((((.((((((((....))))).)).).))))))', 0.0, -0.38225667655481754, -14.1927, 0.1052, 0.5, 0.0]
+
+
+    -> Finished!! Elaapsed time:                   0.08876776695251465 secs.
+
+
+
+
+RNA sequences found with GC-content <= 0.48:
+## UGGUGGAGAGGAGAUGAAAAUUUCACUACGCCACUA 0.42857142857142855
+
+RNA sequences found with GC-content > 0.48:
+@@ CCCCCCACCCCCCCCAAAAGGGGGAGGAGAGGGGGG 1.0
+@@ GCCCCCACCCCCCCCAAAAGGGGGAGGAGAGGGGGC 1.0
+@@ GGGUGGAGAGGGGGGAAAACCCCCACUACACCACCC 0.8571428571428571
+@@ GGGUGGAGAGGGGGGAAAACCUCCACUACACCACCC 0.7857142857142857
+@@ GGGUGGAGAGGGGGGAAAACCUCCACUACACCACUC 0.7142857142857143
+@@ GGGUGGAGAGGGGGGAAAACCUCCACUACGCCACUC 0.7142857142857143
+@@ GGGUGGAGAGGGGGGGAAACCUCCACUACGCCACUC 0.7142857142857143
+@@ GGGUGGAGAGGGGAGGAAACUUCCACUACGCCACUC 0.6428571428571429
+@@ GGGUGGAGAGGGGAUGAAAGUUCCACUACGCCACUC 0.5714285714285714
+@@ UGGUGGAGAGGGGAUGAAAGUUCCACUACGCCACUA 0.5
+@@ UGGUGGAGAGGGGAUGAAAAUUCCACUACGCCACUA 0.5
+
+
+Elapsed time:                   0.08922171592712402 secs.
+Number of function evaluations: 51
+----------------------------------------------------------------------
+
+
+---------------------------------------
+ FINISHED SUCCESSFULLY 
+---------------------------------------

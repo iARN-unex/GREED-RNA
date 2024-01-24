@@ -1,0 +1,84 @@
+
+-----------------------------------------------------------------------
+   _____ _____  ______ ______ _____             _____  _   _           
+  / ____|  __ \|  ____|  ____|  __ \           |  __ \| \ | |   /\     
+ | |  __| |__) | |__  | |__  | |  | |  ______  | |__) |  \| |  /  \    
+ | | |_ |  _  /|  __| |  __| | |  | | |______| |  _  /| . ` | / /\ \   
+ | |__| | | \ \| |____| |____| |__| |          | | \ \| |\  |/ ____ \  
+  \_____|_|  \_\______|______|_____/           |_|  \_\_| \_/_/    \_\ 
+       
+                                       -- A. Rubio-Largo et al. 2023
+-----------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------
+CONFIGURATION: 
+
+ * TARGET:           ((((((.((((((((....))))).)).).))))))
+ * STOPPING:         86400 secs.
+ * SEED:             8
+ * NO. OF SOLUTIONS: 1
+ * max. GC-cont.:    0.48
+ * MODEL:            TURNER2004
+ * MUTATION PROB:    0.01
+ * STAGNATION LIMIT: 50
+------------------------------------------------------------------------------------------------------------------
+
+
+ (1) Let's minimize the base-pair distance between predicted and target structures
+    -> Min(Base-pair distance), min(Hamming distance), max(probability over ensemble), min(partition function), min(ensemble defect), min(%GC-content)
+
+
+	 ->['CCCCCCACCCCCCCCAAAAGGGGGAGGAGAGGGGGG', '((((((.((((((((....))))).)).).))))))', 0.0, -0.5622393803459644, -27.3549, 0.0957, 1.0, 0.0]
+
+
+    -> Found sequence! Elapsed time:                   0.012982606887817383 secs.
+
+
+ (2) We found a sequence that folds exactly like the target structure. Let's minimize the GC-content
+    -> ORDER: Min(Base-pair distance), min(Hamming distance), min(GC-content), min(partition function), min(ensemble defect), max(probability over ensemble))
+
+
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCCCACCCCCCCCAAAAGGGGGAGGAGAGGGGGG', '((((((.((((((((....))))).)).).))))))', 0.0, -0.5622393803459644, -27.3549, 0.0957, 1.0, 0.0]
+	 ->['CCCCCCACCCCCCCCAAAAGGGGGAGGAGAGGGGGG', '((((((.((((((((....))))).)).).))))))', 0.0, -0.5622393803459644, -27.3549, 0.0957, 1.0, 0.0]
+	 ->['CCCCCCACCCCCCUCAAAAGGGGGAGGAGAGGGGGG', '((((((.((((((((....))))).)).).))))))', 0.0, -0.35717498505651557, -24.6345, 0.2592, 0.9286, 0.0]
+	 ->['CCCCGCACCCCCCUCAAAAGGGGGAGGAGAGUGGGG', '((((((.((((((((....))))).)).).))))))', 0.0, -0.42547316963104587, -21.8267, 0.1753, 0.8571, 0.0]
+	 ->['GCCCGCACCCCCCUCAAAAGGGGGAGGAGAGUGGGU', '((((((.((((((((....))))).)).).))))))', 0.0, -0.36389074237822494, -20.623, 0.1786, 0.7857, 0.0]
+	 ->['GCCAUCACCCCCCUCAAAAGAGGGAGGAGAGAUGGU', '((((((.((((((((....))))).)).).))))))', 0.0, -0.5448104495330188, -19.6743, 0.0488, 0.7143, 0.0]
+	 ->['GCCAUCACCCCCAUCACAAGAUGGAGGAGAGAUGGU', '((((((.((((((((....))))).)).).))))))', 0.0, -0.5445550441423291, -17.4746, 0.0486, 0.6429, 0.0]
+	 ->['GUCAUCACCCCCAUCACAAGAUGGAGGAGGGAUGAU', '((((((.((((((((....))))).)).).))))))', 0.0, -0.4611293941423581, -15.9771, 0.0595, 0.5714, 0.0]
+	 ->['GUCAUCACCGCCAUCACAAGAUGGAUGAGGGAUGAU', '((((((.((((((((....))))).)).).))))))', 0.0, -0.2167739855302607, -13.7423, 0.1977, 0.5, 0.0]
+
+
+    -> Finished!! Elaapsed time:                   0.10578417778015137 secs.
+
+
+
+
+RNA sequences found with GC-content <= 0.48:
+## GUCAUCACCGCCAUUACAAGAUGGAUGAGGGAUGAU 0.42857142857142855
+
+RNA sequences found with GC-content > 0.48:
+@@ CCCCCCACCCCCCCCAAAAGGGGGAGGAGAGGGGGG 1.0
+@@ CCCCCCACCCCCCUCAAAAGGGGGAGGAGAGGGGGG 0.9285714285714286
+@@ CCCCGCACCCCCCUCAAAAGGGGGAGGAGAGUGGGG 0.8571428571428571
+@@ GCCCGCACCCCCCUCAAAAGGGGGAGGAGAGUGGGU 0.7857142857142857
+@@ GCCAGCACCCCCCUCAAAAGGGGGAGGAGAGUUGGU 0.7142857142857143
+@@ GCCAGCACCCCCCUCAAAAGAGGGAGGAGAGUUGGU 0.7142857142857143
+@@ GCCAUCACCCCCCUCAAAAGAGGGAGGAGAGAUGGU 0.7142857142857143
+@@ GCCAUCACCCCCUUCAAAAGAGGGAGGAGAGAUGGU 0.6428571428571429
+@@ GCCAUCACCCCCUUCACAAGAGGGAGGAGAGAUGGU 0.6428571428571429
+@@ GCCAUCACCCCCAUCACAAGAUGGAGGAGAGAUGGU 0.6428571428571429
+@@ GUCAUCACCCCCAUCACAAGAUGGAGGAGAGAUGAU 0.5714285714285714
+@@ GUCAUCACCCCCAUCACAAGAUGGAGGAGGGAUGAU 0.5714285714285714
+@@ GUCAUCACCGCCAUCACAAGAUGGAUGAGGGAUGAU 0.5
+
+
+Elapsed time:                   0.1064140796661377 secs.
+Number of function evaluations: 64
+----------------------------------------------------------------------
+
+
+---------------------------------------
+ FINISHED SUCCESSFULLY 
+---------------------------------------
