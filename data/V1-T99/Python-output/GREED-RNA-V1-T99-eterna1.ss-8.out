@@ -1,0 +1,73 @@
+
+-----------------------------------------------------------------------
+   _____ _____  ______ ______ _____             _____  _   _           
+  / ____|  __ \|  ____|  ____|  __ \           |  __ \| \ | |   /\     
+ | |  __| |__) | |__  | |__  | |  | |  ______  | |__) |  \| |  /  \    
+ | | |_ |  _  /|  __| |  __| | |  | | |______| |  _  /| . ` | / /\ \   
+ | |__| | | \ \| |____| |____| |__| |          | | \ \| |\  |/ ____ \  
+  \_____|_|  \_\______|______|_____/           |_|  \_\_| \_/_/    \_\ 
+       
+                                       -- A. Rubio-Largo et al. 2023
+-----------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------
+CONFIGURATION: 
+
+ * TARGET:           (((((......)))))
+ * STOPPING:         86400 secs.
+ * SEED:             8
+ * NO. OF SOLUTIONS: 1
+ * max. GC-cont.:    0.48
+ * MODEL:            TURNER1999
+ * MUTATION PROB:    0.01
+ * STAGNATION LIMIT: 50
+------------------------------------------------------------------------------------------------------------------
+
+
+ (1) Let's minimize the base-pair distance between predicted and target structures
+    -> Min(Base-pair distance), min(Hamming distance), max(probability over ensemble), min(partition function), min(ensemble defect), min(%GC-content)
+
+
+	 ->['CCCCCAAAAAAGGGGG', '(((((......)))))', 0.0, -0.9003951827010559, -9.3647, 0.0135, 1.0, 0.0]
+
+
+    -> Found sequence! Elapsed time:                   0.012217044830322266 secs.
+
+
+ (2) We found a sequence that folds exactly like the target structure. Let's minimize the GC-content
+    -> ORDER: Min(Base-pair distance), min(Hamming distance), min(GC-content), min(partition function), min(ensemble defect), max(probability over ensemble))
+
+
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCCAAAAAAGGGGG', '(((((......)))))', 0.0, -0.9003951827010559, -9.3647, 0.0135, 1.0, 0.0]
+	 ->['CUCCCAAAAAAGGGGG', '(((((......)))))', 0.0, -0.8549077801250619, -6.3966, 0.028, 0.8, 0.0]
+	 ->['CUACCGAAUAAGGUGG', '(((((......)))))', 0.0, -0.9137360317603206, -5.4556, 0.0085, 0.6, 0.0]
+
+
+    -> Finished!! Elaapsed time:                   0.04349851608276367 secs.
+
+
+
+
+RNA sequences found with GC-content <= 0.48:
+## UUACCGAAUAAGGUGA 0.4
+
+RNA sequences found with GC-content > 0.48:
+@@ CCCCCAAAAAAGGGGG 1.0
+@@ GCCCCAAAAAAGGGGC 1.0
+@@ GGCCCAAAAAAGGGCC 1.0
+@@ CUCCCAAAAAAGGGGG 0.8
+@@ CUUCCAAAAAAGGAGG 0.6
+@@ CUUCCGAAAAAGGAGG 0.6
+@@ CUUCCGAAUAAGGAGG 0.6
+@@ CUACCGAAUAAGGUGG 0.6
+
+
+Elapsed time:                   0.04360651969909668 secs.
+Number of function evaluations: 40
+----------------------------------------------------------------------
+
+
+---------------------------------------
+ FINISHED SUCCESSFULLY 
+---------------------------------------
