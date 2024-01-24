@@ -1,0 +1,76 @@
+
+-----------------------------------------------------------------------
+   _____ _____  ______ ______ _____             _____  _   _           
+  / ____|  __ \|  ____|  ____|  __ \           |  __ \| \ | |   /\     
+ | |  __| |__) | |__  | |__  | |  | |  ______  | |__) |  \| |  /  \    
+ | | |_ |  _  /|  __| |  __| | |  | | |______| |  _  /| . ` | / /\ \   
+ | |__| | | \ \| |____| |____| |__| |          | | \ \| |\  |/ ____ \  
+  \_____|_|  \_\______|______|_____/           |_|  \_\_| \_/_/    \_\ 
+       
+                                       -- A. Rubio-Largo et al. 2023
+-----------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------
+CONFIGURATION: 
+
+ * TARGET:           ..........((((....))))((((....))))((((...))))
+ * STOPPING:         86400 secs.
+ * SEED:             7
+ * NO. OF SOLUTIONS: 1
+ * max. GC-cont.:    0.48
+ * MODEL:            TURNER2004
+ * MUTATION PROB:    0.01
+ * STAGNATION LIMIT: 50
+------------------------------------------------------------------------------------------------------------------
+
+
+ (1) Let's minimize the base-pair distance between predicted and target structures
+    -> Min(Base-pair distance), min(Hamming distance), max(probability over ensemble), min(partition function), min(ensemble defect), min(%GC-content)
+
+
+	 ->['AAAAAAAAAAGGGGAAAACCCCGGGGAAAACCCCGGGGAAACCCC', '..........((((....((((((((....))))))))...))))', 0.3556, -2.091147836450804e-05, -25.141, 0.3339, 1.0, 0.1778]
+	 ->['AAAAAAAAAAGGGGAAAACCCCGGGGAAAACCCCGGGGAAACCCC', '..........((((....((((((((....))))))))...))))', 0.3556, -2.091147836450804e-05, -25.141, 0.3339, 1.0, 0.1778]
+
+
+    -> Found sequence! Elapsed time:                   0.014651298522949219 secs.
+
+
+ (2) We found a sequence that folds exactly like the target structure. Let's minimize the GC-content
+    -> ORDER: Min(Base-pair distance), min(Hamming distance), min(GC-content), min(partition function), min(ensemble defect), max(probability over ensemble))
+
+
+	 >>> Resetting the solution to avoid local optima.
+	 ->['AAAAAAAAAAGGGGAAAACCCCGGGGAAAACCCCGGGGAAACCCC', '..........((((....((((((((....))))))))...))))', 0.3556, -2.091147836450804e-05, -25.141, 0.3339, 1.0, 0.1778]
+	 ->['AAAAACAAAAGGGGGAUACCCCGGGGACAACCCUGGGGGAACCCC', '..........((((....((((((((....))))))))...))))', 0.3556, -2.283606667965866e-06, -25.2059, 0.3452, 0.9167, 0.1778]
+	 ->['AAAAACAAAAGGGGGAUACCCCGGGGACAACCCUGGGCGAAGCCC', '..........((((....))))(((.....))).((((...))))', 0.1556, -0.1363426741297249, -18.5281, 0.2587, 1.0, 0.0444]
+	 ->['AUCGACAAACUUAGGAUACUGAGGUCACCCGACUGGGCGGUGCCC', '.........(((((....)))))(((....))).((((...))))', 0.0444, -0.008188892160190543, -11.9614, 0.2833, 0.6667, 0.0667]
+	 ->['AUCGACAAACUUAGGAUACUGAAGUCACCCGACUGGGCGGUGCCC', '..........((((....))))((((....))))((((...))))', 0.0, -0.3065960509155193, -10.3286, 0.2603, 0.5833, 0.0]
+	 ->['AUCGUCAAACUUAGGAUACUGAAGUCACCCGACUGUGCGGUGCAC', '..........((((....))))((((....))))((((...))))', 0.0, -0.14718398620812084, -8.4809, 0.3681, 0.5, 0.0]
+
+
+    -> Finished!! Elaapsed time:                   0.38737940788269043 secs.
+
+
+
+
+RNA sequences found with GC-content <= 0.48:
+## AUCGUCAAACUUAGGAUACUGAAGUCACCCGACUGUGUGGUACAC 0.41666666666666663
+
+RNA sequences found with GC-content > 0.48:
+@@ AAAAAAAAAAGCGGAAAACCGCGGGGAAAACCCCGGGGAAACCCC 1.0
+@@ AAAAAAAAAAGCCGAAAACGGCGGGGAAAACCCCGGGGAAACCCC 1.0
+@@ AAAAAAAAAAGGCGAAAACGCCGGGGAAAACCCCGGGGAAACCCC 1.0
+@@ AAAAAAAAAAGGCCAAAAGGCCGGGGAAAACCCCGGGGAAACCCC 1.0
+@@ AUCGACAAACUUAGGAUACUGAAGUCACCCGACUGGGCGGUGCCC 0.5833333333333334
+@@ AUCGACAAACUUAGGAUACUGAAGUCACCCGACUGUGCGGUGCAC 0.5
+@@ AUCGUCAAACUUAGGAUACUGAAGUCACCCGACUGUGCGGUGCAC 0.5
+
+
+Elapsed time:                   0.3875551223754883 secs.
+Number of function evaluations: 186
+----------------------------------------------------------------------
+
+
+---------------------------------------
+ FINISHED SUCCESSFULLY 
+---------------------------------------
