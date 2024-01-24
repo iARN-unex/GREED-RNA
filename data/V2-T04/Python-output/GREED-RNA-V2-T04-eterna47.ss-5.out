@@ -1,0 +1,474 @@
+
+-----------------------------------------------------------------------
+   _____ _____  ______ ______ _____             _____  _   _           
+  / ____|  __ \|  ____|  ____|  __ \           |  __ \| \ | |   /\     
+ | |  __| |__) | |__  | |__  | |  | |  ______  | |__) |  \| |  /  \    
+ | | |_ |  _  /|  __| |  __| | |  | | |______| |  _  /| . ` | / /\ \   
+ | |__| | | \ \| |____| |____| |__| |          | | \ \| |\  |/ ____ \  
+  \_____|_|  \_\______|______|_____/           |_|  \_\_| \_/_/    \_\ 
+       
+                                       -- A. Rubio-Largo et al. 2023
+-----------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------
+CONFIGURATION: 
+
+ * TARGET:           ((((......(((((...))).((....)).........)).....))))
+ * STOPPING:         86400 secs.
+ * SEED:             5
+ * NO. OF SOLUTIONS: 1
+ * max. GC-cont.:    0.48
+ * MODEL:            TURNER2004
+ * MUTATION PROB:    0.01
+ * STAGNATION LIMIT: 50
+------------------------------------------------------------------------------------------------------------------
+
+
+ (1) Let's minimize the base-pair distance between predicted and target structures
+    -> Min(Base-pair distance), min(Hamming distance), max(probability over ensemble), min(partition function), min(ensemble defect), min(%GC-content)
+
+
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+
+
+    -> Found sequence! Elapsed time:                   0.014795780181884766 secs.
+
+
+ (2) We found a sequence that folds exactly like the target structure. Let's minimize the GC-content
+    -> ORDER: Min(Base-pair distance), min(Hamming distance), min(GC-content), min(partition function), min(ensemble defect), max(probability over ensemble))
+
+
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['UAGGGAAAAAGGGGGACACCCAGCAUUAGCACUGAAAAUCCACACACCUA', '((((.......(((....))).((....))................))))', 0.16, -0.009020548671496296, -8.5018, 0.3113, 0.7778, 0.08]
+	 ->['UAGGGAAAAAGGGCGACACGCAGCAUUAGCACUGAAAAUCCACACACCUA', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.09309857796386953, -6.2632, 0.2666, 0.8182, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGACAAAAAAGGGGGGAACCCAGGGUAACCAGUGAGAAACCAAACAGUCC', '((((.......(((....))).((....))................))))', 0.16, -0.0035382959360230493, -10.7786, 0.2625, 0.8889, 0.08]
+	 ->['GGACAAUAAAGUGGGGAACCCAGGGUCACCAGUGAGAAAACAUACAGUCC', '((((.......((((...))))((....)).((......)).....))))', 0.1, -0.0005463006888585608, -9.93, 0.2375, 0.75, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAGUGCCCCCAAAGGGACCAAAAGGAAAAAAAUCGGAAAACGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.08562665690808684, -9.8148, 0.2294, 1.0, 0.08]
+	 ->['CCCCUCAGUGCUCCCACAGGGACCAACAGGAAAAUCAUCGGAAAACGGGG', '((((.......((((...))))((....))................))))', 0.06, -0.0004317310437964294, -10.8751, 0.3425, 0.9, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GAGGGAGAGAGGGGGCUACCCAAGAUAACUACGAUAAAACCAAUUACCUC', '((((.......(((....))).((....))................))))', 0.16, -0.007963624758713253, -7.5786, 0.3083, 0.7778, 0.08]
+	 ->['GAGGGAGAGAGGGGGCGACCUAAGAUAACUACCAUAAGACCAAUUACCUC', '((((..((..((...........................))..)).))))', 0.14, -0.0014294306362763497, -6.6372, 0.3264, 0.625, 0.28]
+	 ->['GAGGGGGAGAGGAGGCGACCUAAGACAACUAUGAUGAGACCGAUUACCUC', '((((..((..(((((...)))..................))..)).))))', 0.08, -0.0028433550939565826, -6.7133, 0.378, 0.6364, 0.16]
+	 ->['GAGGGGGAAAGGAGGCGACCUAAGACUACUAUGAUGAGACCGAUUACCUC', '((((......(((((...)))..................)).....))))', 0.04, -0.006277017927426731, -6.2253, 0.3637, 0.7778, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAUAGGGACCAAAAGGAGACAAAAAGGAGAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.047428640600698846, -9.2789, 0.1939, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAUGAAGGGGUAAAACCAGUACAAGCAGAAAAAAACCAAAAACCUC', '((((.......((.........((....)).........)).....))))', 0.14, -0.027304549666611545, -4.1192, 0.2836, 0.75, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CUCCAAAAAACCCCCAAAGGGACCAAAAGGACAAAUAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.027118058160610838, -6.6234, 0.2731, 0.8889, 0.08]
+	 ->['CUCCAACCAACCUCCAAAGGGACCGUAAGGACAAAUAAAGGACAAAGGGG', '((((......(((......(..((....)).)......))).....))))', 0.1, -0.0008712997599617592, -6.7423, 0.2748, 0.8, 0.14]
+	 ->['CUCCAACCAACCGCCAAAGGCACCGUAAGGACAAAUAAAGGACAAAGGGG', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.16241104557698907, -6.8202, 0.1677, 0.9091, 0.0]
+	 ->['CUCCGAGCAACCGCCAAAGGCAUCGUAAGAACAACUAUAGGACACAGGGG', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.13111782542647074, -6.2522, 0.2001, 0.8182, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAGAACCCCCAAAGGGACCAAAAGGCGUAGCGAAGGAAUAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.017677184254930273, -9.8872, 0.2456, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAUCACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.019943697344431677, -10.3128, 0.2325, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAAUCCAGGAAUACCAAAGUAACACCAAGCACCCC', '((((.......((.........((....)).........)).....))))', 0.14, -0.011981201372826822, -8.3269, 0.2664, 1.0, 0.12]
+	 ->['GUAGAAUAAAGGAGGACAUCUAGGAAUACCAAAGUAACACCGAGCACUGC', '((((......((.(........((....)).......).)).....))))', 0.08, -0.0018343782472958349, -3.6835, 0.2848, 0.7778, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAUAGGAAAAAACAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.055447312985745734, -9.1826, 0.187, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCGCAAAGUGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......((.........((....)).........)).....))))', 0.14, -0.02610946696143178, -6.9468, 0.1927, 1.0, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGAGAAAGUAGGGGGAAACCCAGUAAAAGCAAAAAAAAACCAAACACUCC', '((((.......(((....))).((....))................))))', 0.16, -0.011839503419873134, -7.1342, 0.2536, 0.7778, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CACCAAGAAACCCCCGAAGGGACCAUAAGGACAUUUAAAGGAAAUAGGUG', '((((.......(((....))).((....))................))))', 0.16, -0.0226785777522543, -7.4336, 0.275, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAGAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.0582582791313342, -9.1521, 0.1822, 1.0, 0.08]
+	 ->['CCCCAAAUAACCCCGGAAUGGACCACAUGGAAAAAAGUAGGAUAAAGGGG', '((((........((.....)).((....))................))))', 0.06, -0.013029463385138348, -7.6752, 0.3213, 1.0, 0.12]
+	 ->['GCCCAAGUAACCCCAUAAUGGACCACAUGGAAAUAAGUAGGAUGAAGGGU', '((((........(((...))).((....))................))))', 0.04, -0.02372432944132575, -6.7058, 0.2717, 0.7778, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAGAAGGCACAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05155757256866523, -9.2274, 0.1941, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAACAGAGGGGGAAACCCAGUAAAAGCGUAAAAAGACCAAAAACUCC', '((((.......(((....))).((....))................))))', 0.16, -0.004347856503862303, -6.7516, 0.3522, 0.7778, 0.08]
+	 ->['GGGGAACAUAGGGGGCAAUCCAGUAAUAGCGUAUAGAGACCAAAGACUCC', '((((.......((.........((....)).........)).....))))', 0.14, -0.001663343392459763, -5.0438, 0.375, 0.75, 0.12]
+	 ->['GGUGAACAUAGCGGGCAAUCCAGUAAUAGCGUAUAGAUAGCUAAGACACC', '((((....((((..........((....)).........))))...))))', 0.1, -3.088930390051259e-05, -8.2006, 0.3163, 0.6, 0.2]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['AUCCGUUAAAGAGGCACAGCCAGGGUGACCGCAGACUAGUCAGGGAGGAU', '((((........(((...))).((....))................))))', 0.04, -0.003758130845593352, -8.0414, 0.342, 0.7778, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGACGAAAGGGGGAGACCCAGGAACACCAAAAAAAAACCUAGAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.009570452979085929, -10.7653, 0.2209, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCACAAAAAAACUAAUUACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.0005699716660217525, -10.6039, 0.2484, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CGCCAAAAAACCCCCAAAGGGAUCUAAGGAAAAUCAGAAGGACAAAGGUG', '((((.......(((....))).((....))................))))', 0.16, -0.009671796957739011, -6.3588, 0.3079, 0.7778, 0.08]
+	 ->['CGCCAAAAAACCCCCAAAGGGAUCUAAGGAAAAUCAGAGGGAGAGAGGUG', '((((......(((.(...((..((....))...)).).))).....))))', 0.14, -0.0017772564070871078, -7.403, 0.282, 0.75, 0.16]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAACACCCCCACAGGGACUAAAAGGAAAAAAAAAGGAAUAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.023207900448800254, -7.5194, 0.226, 0.8889, 0.08]
+	 ->['GCCCAAAACUCUCCCACAGGGACUACAAGGAAAAUAAAAAGAAUUAGGGC', '((((.......((((...))))((....))................))))', 0.06, -0.0003554043514325633, -8.195, 0.2079, 0.8, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAGAACCCCCUGAGGGACCACAUGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05336291367381229, -9.2062, 0.201, 1.0, 0.08]
+	 ->['CCCCAAAGAACUCCCUGAGGGACCACAUGGACAAAAAAAAGAAAAAGGGG', '((((.......((((...))))((....))................))))', 0.06, -0.0023194748759264782, -9.1389, 0.1165, 0.9, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGACACCCAGGAAAACCAUAAGAAUACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.01975813346427036, -10.3186, 0.2205, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGACACCCAGGAAAACCAUAAGAAUCCCAAAAACCCC', '((((......((((........((....)).......)))).....))))', 0.1, -0.0025527613247482107, -11.4798, 0.2572, 0.9, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCAAAAAAACCCCCAAAGGGACCAUAAGGAAAAAAAAAGGAAAAAUGGG', '((((.......(((....))).((....))................))))', 0.16, -0.08774590997092027, -6.9997, 0.2038, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGCAAAAAAGGGGGAAACCCAGGGAAACCAAAACCAAACCAUAGAGCCC', '((((.......(((....))).((....))................))))', 0.16, -0.009880150644812596, -12.2457, 0.2288, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAGAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.021112708515929217, -10.2777, 0.2158, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGUAAGGCCAGGAAAACCAAAAAGUAACCAAAAACCCC', '((((.......((.........((....)).........)).....))))', 0.14, -0.10454567690658424, -7.9917, 0.2095, 1.0, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CACCAAAAAACCCCCAAAGGGACCAAUUGGAAAAAAAAAGGAUAAAGGUG', '((((.......(((....))).((....))................))))', 0.16, -0.030382944706302758, -7.2533, 0.3053, 0.8889, 0.08]
+	 ->['CAACAAAGAACCCGGAAACCGACCAAUUGGGCAGAAGAAGGUUAAAGUUG', '((((....(((((((...))).((....)).........))))...))))', 0.04, -0.0004516001296158636, -7.0473, 0.2533, 0.6923, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGACAAACGGGGGGAACUCAGUAAAAGCAUAAGAACACCAUAAGCCCC', '((((.......((.........((....)).........)).....))))', 0.14, -0.0020801831056313927, -8.106, 0.2722, 0.875, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['AGGGGAAAGAGGGGGUAACCCAUGAAAACAAAUAAAAUACCACAGACCCU', '((((.......(((....))).((....))................))))', 0.16, -0.005715995663432061, -7.983, 0.3395, 0.7778, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGAGAAAAAAGGGGGAAACCCAGGAAAACCAAAAUAAAACCAAAAACUCC', '((((.......(((....))).((....))................))))', 0.16, -0.02264627496832894, -8.1345, 0.2147, 0.8889, 0.08]
+	 ->['GGAGAAUAAAGGGGUAAAACCAGGGAAACCAAAAUAAAACCAUAAACUCC', '((((.......((.........((....)).........)).....))))', 0.14, -0.07903672227920085, -7.1641, 0.1846, 0.875, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CUCCAGAAAACCCCCAAAGGGCCCAGACGGAACAAAAGAGGACACAGGAG', '((((......(((.....))).((....))................))))', 0.16, -0.008495908693615245, -7.8387, 0.2496, 0.8889, 0.08]
+	 ->['CUGCAGAAAACCCCGAUACGGCCCAGACGGAACAAAAGAGGAUACAGUAG', '((((......((.(.....(..((....))..)....).)).....))))', 0.1, -0.007743918196473145, -4.7958, 0.2539, 0.8, 0.14]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAGAAGGCGGGAGUCCCAGGAAAUCCAUUCUAUUAGCGGAAACCCC', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.1152510351196692, -10.6316, 0.2592, 1.0, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAGAGGACAAAAAAAGGAAUAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05152247972854888, -9.2278, 0.1861, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAUAAGGGGUAAAACCAGGAAAUCCAAAAAAAAACCAAAGGCCCC', '((((.......((.........((....)).........)).....))))', 0.14, -0.11501749278773858, -8.8329, 0.1779, 1.0, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAGAAAAAAGGAAAACGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.045973418027803, -9.2981, 0.1907, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACUAGAAGGAAAAUGAAAGGAAAUAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.01543590729036934, -7.7707, 0.2567, 0.8889, 0.08]
+	 ->['GCCCGAAAAACCCCCAAAGGGACUUGAAGGAAAAUGAACGGCUAUAGGGU', '((((......(((((...)))..................)).....))))', 0.04, -0.011853898398978, -7.4334, 0.324, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAGCCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023972889057940715, -10.3994, 0.2094, 1.0, 0.08]
+	 ->['GGUCGAAGAAGGGGUAUGACCAGGGGAGCCGAACUAAAGCCAUGCAGACC', '((((.......((.........((....)).........)).....))))', 0.14, -0.005870850874848055, -9.2665, 0.2549, 0.875, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GUGGAACAAAGGGGGCUACCCAGAGUAAUCAAAAAGAGACCAAAAACCGC', '((((.......(((....))).((....))................))))', 0.16, -0.008510549936620693, -7.3377, 0.3171, 0.7778, 0.08]
+	 ->['GUUGAACGAGUGUAGCUACUAAGAGGAAUCGAAAAGAGACAAAAACCGGC', '((((......(((..((.....((....))....))..))).....))))', 0.12, -1.450589823497565e-06, -3.8855, 0.3436, 0.4545, 0.2]
+	 ->['GUAGUACGAGUGUAGCAACUAAGAGGAAUCGAUACGAGACAAAUGCCUGC', '((((......(((..(......((....)).....)..))).....))))', 0.1, -4.011571683194518e-06, -4.4586, 0.4898, 0.5, 0.16]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGCGGAAACCGAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.3575121876183512, -7.0339, 0.0735, 1.0, 0.0]
+	 ->['GAGGAGCAAAGGCGGAGACCGAGGGAGACCACAGCGAUACCACUUGCCUC', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.013525806795805619, -9.1521, 0.4516, 0.9091, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGGAGACCAAAAAAAAACCAAAAACCUC', '((((.......(((....))).((....))................))))', 0.16, -0.014263389802601088, -8.9194, 0.2618, 0.8889, 0.08]
+	 ->['GAGGAAAAAAGGGGGCUACUCGGGGAGACCAAAAAAACACCACAAACCUC', '((((.......((.........((....)).........)).....))))', 0.14, -0.002993244670236508, -7.8817, 0.228, 0.875, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['UCUCAAAUAACCCCCGACGGGACCAAAAGGACACAAUAAGGAAAUAGGGA', '((((.......(((....))).((....))................))))', 0.16, -0.010309437095359981, -5.8195, 0.3001, 0.7778, 0.08]
+	 ->['UCUCAAAUAACCCCCGACGGGACCAAAAGGACACAUUAAGGAUAUAGGGA', '((((..(((.(((((...))).((....)).........)).))).))))', 0.06, -0.006196170072367605, -6.1333, 0.296, 0.6429, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CUCCAUUAAACCCCCGAAGGGACCGAUAGGAUAAAUAAAGGAAAUAGGAG', '((((.......(((....))).((....))................))))', 0.16, -0.026153489199962986, -8.3457, 0.2473, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAACAAAGCCCCUAAGGGAACAAACGUAUUAAUAAAGCAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05262525675111175, -7.6148, 0.214, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CUCCAAACCACCCCCAAAGGGACCAAAAGGAAACGAAAAGGAAUAAGGAG', '((((.......(((....))).((....))................))))', 0.16, -0.022723630359492465, -7.6324, 0.2262, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAACAACCCCAAACUGGACCCUAGGGAAAAAUAAAGGAAGAAGGGG', '((((........(((...))).((....))................))))', 0.04, -0.0505046855902379, -7.9401, 0.2069, 0.8889, 0.08]
+	 ->['CCCCAAACAUCCCCAAACUGGACCGUAGGGAAAAAUAAAGGAAGAAGGGG', '((((.....((((((...))).((....)).........)))....))))', 0.02, -0.0064032062946981615, -9.713, 0.1686, 0.8333, 0.04]
+	 ->['CCCCAAACAGCCCCAAACUGGACCGGAGGGAAAAAGAAAGGAAGACGGGG', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.09419050945008506, -8.856, 0.1922, 0.9091, 0.0]
+	 ->['CCACUGACAGCCCCAGACUGGACCGGAGGGAUGACGAUAGGAAUAUGUGG', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.03645913852454202, -7.741, 0.4012, 0.8182, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGAGGAUACCGGGGGGCACCCAGCGUAAGCAAGCGACGACCUAGAACUCU', '((((.......(((....))).((....))................))))', 0.16, -0.003379648063265126, -9.9069, 0.3896, 0.7778, 0.08]
+	 ->['GGAGGAUUCCGGCGGGCACCGAGCGUAAGCAAGCGACGACCUUGAACUCU', '((((......((((.((.....((....))..))..)).)).....))))', 0.14, -0.0005272123280977931, -9.5519, 0.445, 0.8333, 0.2]
+	 ->['GGAGGAUUCCAGUGGGCACCGAGCGUAAGCGAGCGACGACUUAGAACUCU', '((((......(((.(....(..((....))..)...).))).....))))', 0.12, -4.820496409891091e-07, -9.8645, 0.3486, 0.6364, 0.14]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAACACCCCCAAAGGGACCAAAAGGAAACUAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.025767300134687362, -9.6549, 0.2432, 1.0, 0.08]
+	 ->['GCCCAAAACACCCCCAAAGGGACCAAAAGGUAACUAAAAGGAAACAGGGC', '((((......((.....((..(((....)))..))....)).....))))', 0.12, -0.0011309028423943613, -11.6816, 0.2467, 0.8182, 0.22]
+	 ->['GACUAUCGAACCCCGAAACGGACCGAGAGGUAACUAUUAGGACAUAAGUC', '((((........(((...)))(((....)))...............))))', 0.06, -0.0023965812919855937, -7.1187, 0.336, 0.7, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCACAAUAAACCUCCACAGGGACCAGAAGGAGAGGAAAAGGGAAAAGUGG', '((((......(((.........((....))........))).....))))', 0.08, -0.002244632261122802, -7.0591, 0.2564, 0.7778, 0.12]
+	 ->['CCACAAUAUACCGCCACAGGCACCAGAUGGAGAGGAAAAGGGAAGGGUGG', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.2134867038056994, -8.3517, 0.1733, 0.9091, 0.0]
+	 ->['CCACAAUAUACCGCCACAGGCAUCAGAUGAAGAGGAAAAGGGAAGGGUGG', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.09342107442941298, -7.1611, 0.2201, 0.8182, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['UCCCAAAAAACCCCCAAAGGGAGCAAUUGUAAAAAAAAAGGAAAAAGGGA', '((((.......(((....))).((....))................))))', 0.16, -0.023389647593770043, -6.9146, 0.2443, 0.7778, 0.08]
+	 ->['UCCCACACGACCCGCAUAGCGAGCAAUUGUAAAUAAUAUGGAAUAAGGGA', '((((........(((...))).((....))................))))', 0.04, -0.01227561659437891, -6.3119, 0.3102, 0.7778, 0.08]
+	 ->['UCCCACACGACCGGCAUUGCCAGCAAUUGUAAAGAUUAUGGAAUAAGGGA', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.028668525967280874, -7.3891, 0.3192, 0.8182, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGCCAAAAGGGGGAAACCCAGGAUAACCACAGAUAAACCUAGUACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.00457847044698653, -11.2197, 0.2719, 1.0, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGCAUAAUAGGGGGGAACCCGGGGUAACCAUUCAAAGACCACUUAGCCC', '((((.......(((....))).((....))................))))', 0.16, -0.0018336970297695263, -13.3837, 0.3222, 1.0, 0.08]
+	 ->['UGGCGUGAUAUUGGCGAGGCCGGGGGUACCAUACAAUGAGAACUUAGCCA', '((((.......((((...))))((....))................))))', 0.06, -0.000120170404841209, -10.0633, 0.4023, 0.8, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGACAUAAGGGGGAAACCCAGGAAAACCAAAAUUAAACCCAAGACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.00644846519925107, -11.0087, 0.2544, 1.0, 0.08]
+	 ->['GGGGCCAUGAGAGGGAAUCCCAGGUAAACCAAACUUAUAUCCACGACCCC', '((((.(.((.(((((...))).((....)).........)))).).))))', 0.06, -0.001148684111045172, -9.972, 0.2486, 0.8571, 0.12]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAGUAAGGGGGGUACCCAGUAAGAACAUAAAAGCGCCAUCAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.0025417760834748272, -9.6825, 0.3069, 0.8889, 0.08]
+	 ->['GGGGAAGUAAGUGGGGUACCCAGUAAGAACAUAAAAGCGACAUCAACCCC', '((((.....(.((((...)))).)......................))))', 0.12, -0.001576598135282556, -8.2768, 0.2444, 0.7778, 0.18]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAGACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.02250710187961824, -10.2383, 0.2127, 1.0, 0.08]
+	 ->['GGGGAAUAAAGGCGGAAACCGAGGAAAACCAAAAAAAUACCCAAGACCCC', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.1975951322107715, -7.3994, 0.1253, 1.0, 0.0]
+	 ->['GGGAAGUAUAGGCGGACACCGAGCAAGAGCAGCAGAGUACCCAAGAUCCC', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.03021796370167912, -7.4567, 0.3057, 0.9091, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['GCCCACGAUACCCCCCGAGGGAGCAAAAGUAGAAUAAGAGGAAACAGGGC', '((((.......(((....))).((....))................))))', 0.16, -0.02333881100425261, -8.4159, 0.2284, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['UCCCAAAAAACCCCCAAAGGGCCCGAAAGGAAAAAAAAAGGAAUAAGGGA', '((((......(((.....))).((....))................))))', 0.16, -0.022239284337305865, -8.7457, 0.2107, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['GCGCAGUAAACCCCCGCAGGGAGCAGAAGCAAAGAGAGAGGAUAAAGUGU', '((((.......(((....))).((....))................))))', 0.16, -0.01839094858753907, -6.3628, 0.2865, 0.7778, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['AGGGAAAAAAGGGGGAAACCCAGGAAAGCCACAAAAAUACCAAUAACCCU', '((((.......(((....))).((....))................))))', 0.16, -0.014900608428520404, -8.9925, 0.2376, 0.8889, 0.08]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['CCCCAAAAAACCCCUAAAAGGACCAGAAGGAAAACAAAAGGAAAAAGGGG', '((((........(((...))).((....))................))))', 0.04, -0.08051478531924586, -7.2527, 0.1991, 0.8889, 0.08]
+	 ->['CCCGAAAAAGCCCCUAAAAGGACCACAAGGAAAACAAAAGGAAAAACGGG', '((((......(((((...))).((....)).........)).....))))', 0.0, -0.25722605554201533, -6.4368, 0.1099, 0.9091, 0.0]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['CCCCAAAAAACCCCCAAAGGGACCAAAAGGAAAAAAAAAGGAAAAAGGGG', '((((.......(((....))).((....))................))))', 0.16, -0.05843456126811887, -9.1503, 0.1821, 1.0, 0.08]
+	 ->['ACACAAAACACCUCCAAAGGAAGCGUAAGCAGUAGAGCGGGAAACAGUGU', '((((......(((((...))).((....))........))......))))', 0.08, -0.0046404341579441965, -6.2115, 0.2542, 0.7273, 0.04]
+	 >>> Resetting the solution to avoid local optima.
+	 ->['GGGGAAAAAAGGGGGAAACCCAGGAAAACCAAAAAAAAACCAAAAACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.023015136536324053, -10.2245, 0.2121, 1.0, 0.08]
+	 ->['GGGGAAGAGAGGGGGAAACCCAGUGAAAACAGAGAACAACCAUAGACCCC', '((((.......(((....))).((....))................))))', 0.16, -0.011582057113719001, -9.9477, 0.2499, 0.8889, 0.08]
+	 ->['GGGGAAGAGAGUGGGAAACCCAGUGAAAACAGAGAACAAGCAUAGACCCC', '((((.....(.((((...)))).)......................))))', 0.12, -0.0024119881178416057, -8.6148, 0.1865, 0.7778, 0.18]
+
+
+
+
+RNA sequences found with GC-content <= 0.48:
+
+RNA sequences found with GC-content > 0.48:
+@@ GGGGAAAAAAGCGGGAAACCCAGGAAAACCAAAAAAAAAGCAAAAACCCC 1.0
+@@ GGGGAAAAAAGCGGCAAAGCCAGGAAAACCAAAAAAAAAGCAAAAACCCC 1.0
+@@ GGGGAAAAAAGGGGCAAAGCCAGGAAAACCAAAAAAAAACCAAAAACCCC 1.0
+@@ GGGCAAAAAAGGGGCAAAGCCAGGAAAACCAAAAAAAAACCAAAAAGCCC 1.0
+@@ GGCCAAAAAAGGGGCAAAGCCAGGAAAACCAAAAAAAAACCAAAAAGGCC 1.0
+@@ GGCCAAAAAAGGGCCAAAGGCAGGAAAACCAAAAAAAAACCAAAAAGGCC 1.0
+@@ UAGGGAAAAAGGGCGACACGCAGCAUUAGCACUGAAAAUCCACACACCUA 0.8181818181818181
+@@ UAGGGAAAAAGGGCGACACGCAACAUUAGUACUGAAAAUCCACACACCUA 0.7272727272727273
+@@ UAGGGACAAAGGGCGACACGCAACAUUAGUACUGAAAAUCCACACACCUA 0.7272727272727273
+@@ UAGGGACAAAGGGCGACACGCAACAUUAGUACUGAAUAUCCACACACCUA 0.7272727272727273
+@@ GAGGGGGAAAGGAGGCGACCUAGGACUACCAUGAUGAGACCGAUUACCUC 0.8181818181818182
+@@ CUCCAACCAACCGCCAAAGGCACCGUAAGGACAAAUAAAGGACAAAGGGG 0.9090909090909092
+@@ CUCCAACCAACCGCCAAAGGCAUCGUAAGAACAAAUAAAGGACAAAGGGG 0.8181818181818182
+@@ CUCCGACCAACCGCCAAAGGCAUCGUAAGAACAAAUAAAGGACAAAGGGG 0.8181818181818182
+@@ CUCCGACCAACCGCCAAAGGCAUCGUAAGAACAAGUAAAGGACAAAGGGG 0.8181818181818182
+@@ CUCCGACCAACCGCCAAAGGCAUCGUAAGAACAAGUAUAGGACAAAGGGG 0.8181818181818182
+@@ CUCCGACCAACCGCCAAAGGCAUCGUAAGAACAACUAUAGGACAAAGGGG 0.8181818181818182
+@@ CUCCGACCAACCGCCAAAGGCAUCGUAAGAACAACUAUAGGACACAGGGG 0.8181818181818182
+@@ CUCCGAGCAACCGCCAAAGGCAUCGUAAGAACAACUAUAGGACACAGGGG 0.8181818181818182
+@@ AUCCGAGCAACCGCCAAAGGCAUCGUAAGAACAACUAUAGGACACAGGGU 0.7272727272727273
+@@ AUCCGACCAACCGCCAAAGGCAUCGUAAGAACAACUAUAGGACACAGGGU 0.7272727272727273
+@@ AUCCGACCAACCGCCAAAGGCAGCGUAAGUACAACUAUAGGACACAGGGU 0.7272727272727273
+@@ AUCCGACCAACCGCCAAAGGCAGCGUAAGUACAACUAUAGGAGACAGGGU 0.7272727272727273
+@@ AUCCGACCAACCGCCAAAGGCAGCGUAAGUAGAACUAUAGGAGACAGGGU 0.7272727272727273
+@@ AUCCGACCAACCGCCAAAGGCAGCGUAAGUAGAUCUAUAGGAGACAGGGU 0.7272727272727273
+@@ AUCCGACCAACCGCCCAAGGCAGCGUAAGUAGAUCUAUAGGAGACAGGGU 0.7272727272727273
+@@ AUCCGACCAACCGCCCAAGGCAGCGUAAGUAGAUCUAUAGGAGACAGGAU 0.7272727272727273
+@@ AUCCGACCAACCGCCCAAGGCAGCGUAAGUAGUUCUAUAGGAGACAGGAU 0.7272727272727273
+@@ GUCCGACCAACCGCCCAAGGCAGCGUAAGUAGUUCUAUAGGAGACAGGAU 0.7272727272727273
+@@ GUCCGACCAACCGCCGAAGGCAGCGUAAGUAGUUCUAUAGGAGACAGGAU 0.7272727272727273
+@@ GUCCGACCAACCGCCGAAGGCAGCGUAAGUAGUUCUAUAGGAUACAGGAU 0.7272727272727273
+@@ GUCCGACCAACCGCCGAAGGCAGCGAAAGUAGUUCUAUAGGAUACAGGAU 0.7272727272727273
+@@ GUCCGCCCAACCGCCGAAGGCAGCGAAAGUAGUUCUAUAGGAUACAGGAU 0.7272727272727273
+@@ GUCCGCCCAACCGCCGAAGGCAGCGAAAGUAGUUCUAGAGGAUACAGGAU 0.7272727272727273
+@@ GUCCGCCCCACCGCCGAAGGCAGCGAAAGUAGUUCUAGAGGAUACAGGAU 0.7272727272727273
+@@ GGGGAAAAAAGCGGGAAACCCAGGAAAACCAUAAAAAAAGCAAAAACCCC 1.0
+@@ GGGGAAAAAAGCGGGAAACCCAGGAAAACCAUAAAAAAAGCGAAAACCCC 1.0
+@@ GGGGAAAAAAGCGGGAAACCCAGGAAAACCAUAAUAAAAGCGAAAACCCC 1.0
+@@ GGGGAAAAAGGCGGGAAACCCAGGAAAACCAUAAUAAAAGCGAAAACCCC 1.0
+@@ GGGGAAAAAGGCGGGAGACCCAGGAAAACCAUAAUAAAAGCGAAAACCCC 1.0
+@@ GGGGAAAAAGGCGGGAGACCCAGGAAAACCAUACUAAAAGCGAAAACCCC 1.0
+@@ GGGGAAAAAGGCGGGAGACCCAGGAAAGCCAUACUAAAAGCGAAAACCCC 1.0
+@@ GGGGAAAAAGGCGGGAGACCCAGGAAAGCCAUACUAAUAGCGAAAACCCC 1.0
+@@ GGGGAAAAAGGCGGGAGACCCAGGAAAGCCAUACUAAUAGCGGAAACCCC 1.0
+@@ GGGGAAGAAGGCGGGAGACCCAGGAAAGCCAUACUAAUAGCGGAAACCCC 1.0
+@@ GGGGAAGAAGGCGGGAGACCCAGGAAAGCCAUACUAUUAGCGGAAACCCC 1.0
+@@ GGGGAAGAAGGCGGGAGUCCCAGGAAAGCCAUACUAUUAGCGGAAACCCC 1.0
+@@ GGGGAAGAAGGCGGGAGUCCCAGGAAAUCCAUACUAUUAGCGGAAACCCC 1.0
+@@ GGGGAAGAAGGCGGGAGUCCCAGGAAAUCCAUUCUAUUAGCGGAAACCCC 1.0
+@@ GAGGAAGAAGGCGGGAGUCCCAGGAAAUCCAUUCUAUUAGCGGAAACCUC 0.9090909090909092
+@@ GAGGAAGAAGGCGGGAGUCCCAGGAAAUCCAUUCUACUAGCGGAAACCUC 0.9090909090909092
+@@ GAGGAAGAAGGCGGGAGUCCCAGGAAAUCCAUUCUACUAGCGGAUACCUC 0.9090909090909092
+@@ GUGGAAGAAGGCGGGAGUCCCAGGAAAUCCAUUCUACUAGCGGAUACCAC 0.9090909090909092
+@@ GUGGAAGAAGGCGGGGGUCCCAGGAAAUCCAUUCUACUAGCGGAUACCAC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAAACCAAAAAAAAACCAAAAACCCC 1.0
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAAACCAAAAAAAAACCAAAAACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAAACCAAAAAAAUACCAAAAACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAAACCAGAAAAAUACCAAAAACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAUACCAGAAAAAUACCAAAAACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAUACCAGAAAAAUACCAAUAACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAUACCAGAAAAAUACCACUAACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAUACCAGAAAAAUACCACUUACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGGAUACCAGAAAAAUACCACUUACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGGAUACCAGAAACAUACCACUUACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGGAUACCACAAACAUACCACUUACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGGAUACCACAGACAUACCACUUACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGGAGACCACAGACAUACCACUUACCUC 0.9090909090909092
+@@ GGGGAAAAAAGGCGGAAACCGAGGGAGACCACAGCCAUACCACUUACCUC 0.9090909090909092
+@@ GGGGAAUAAAGGCGGAAACCGAGGGAGACCACAGCCAUACCACUUACCUC 0.9090909090909092
+@@ GAGGAAUAAAGGCGGAAACCGAGGGAGACCACAGCCAUACCACUUACCUC 0.9090909090909092
+@@ GAGGAAUAAAGGCGGAAACCGAGGGAGACCACAGCCAUACCACUUGCCUC 0.9090909090909092
+@@ GAGGAACAAAGGCGGAAACCGAGGGAGACCACAGCCAUACCACUUGCCUC 0.9090909090909092
+@@ GAGGAACUAAGGCGGAAACCGAGGGAGACCACAGCCAUACCACUUGCCUC 0.9090909090909092
+@@ GAGGACCUAAGGCGGAAACCGAGGGAGACCACAGCCAUACCACUUGCCUC 0.9090909090909092
+@@ GAGGACCUAAGGCGGAGACCGAGGGAGACCACAGCCAUACCACUUGCCUC 0.9090909090909092
+@@ GAGGAGCUAAGGCGGAGACCGAGGGAGACCACAGCCAUACCACUUGCCUC 0.9090909090909092
+@@ GAGGAGCAAAGGCGGAGACCGAGGGAGACCACAGCCAUACCACUUGCCUC 0.9090909090909092
+@@ GAGGAGCAAAGGCGGAGACCGAGGGAGACCACAGCGAUACCACUUGCCUC 0.9090909090909092
+@@ GAGUAGCAAAGGCGGAGACCGAGGGAGACCACAGCGAUACCACUUGACUC 0.8181818181818182
+@@ GAGUAGCAAAGGCGGAGACCGAGGGAGACCACAGCCAUACCACUUGACUC 0.8181818181818182
+@@ CCCCAAACAGCCCCAAACUGGACCGUAGGGAAAAAUAAAGGAAGAAGGGG 0.9090909090909091
+@@ CCCCAAACAGCCCCAAACUGGACCGUAGGGAAAAAGAAAGGAAGAAGGGG 0.9090909090909091
+@@ CCCCAAACAGCCCCAAACUGGACCGUAGGGAAAAAGAAAGGAAGACGGGG 0.9090909090909091
+@@ CCCCAAACAGCCCCAAACUGGACCGGAGGGAAAAAGAAAGGAAGACGGGG 0.9090909090909091
+@@ CCACAAACAGCCCCAAACUGGACCGGAGGGAAAAAGAAAGGAAGACGUGG 0.8181818181818182
+@@ CCACAAACAGCCCCAGACUGGACCGGAGGGAAAAAGAAAGGAAGACGUGG 0.8181818181818182
+@@ CCACUAACAGCCCCAGACUGGACCGGAGGGAAAAAGAAAGGAAGACGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAAAAAGAAAGGAAGACGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAAAAAGAUAGGAAGACGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAAAACGAUAGGAAGACGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAUAACGAUAGGAAGACGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAUAACGAUAGGAAUACGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAUAACGAUAGGAAUAUGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAUUACGAUAGGAAUAUGUGG 0.8181818181818182
+@@ CCACUGACAGCCCCAGACUGGACCGGAGGGAUGACGAUAGGAAUAUGUGG 0.8181818181818182
+@@ ACACUGACAGCCCCAGACUGGACCGGAGGGAUGACGAUAGGAAUAUGUGU 0.7272727272727273
+@@ UCACUGACAGCCCCAGACUGGACCGGAGGGAUGACGAUAGGAAUAUGUGA 0.7272727272727273
+@@ UCACUGACAGCCCCAGACUGGACCGGAGGGAUGACGAUAGGAUUAUGUGA 0.7272727272727273
+@@ UCACUGACAGCCCCAGACUGGACCGGAGGGAUGACUAUAGGAUUAUGUGA 0.7272727272727273
+@@ CCACAAUAAACCGCCACAGGCACCAGAAGGAGAGGAAAAGGGAAAAGUGG 0.9090909090909092
+@@ CCACAAUAAACCGCCACAGGCACCAGAUGGAGAGGAAAAGGGAAAAGUGG 0.9090909090909092
+@@ CCACAAUAAACCGCCACAGGCACCAGAUGGAGAGGAAAAGGGAAGAGUGG 0.9090909090909092
+@@ CCACAAUAAACCGCCACAGGCACCAGAUGGAGAGGAAAAGGGAAGGGUGG 0.9090909090909092
+@@ CCACAAUAUACCGCCACAGGCACCAGAUGGAGAGGAAAAGGGAAGGGUGG 0.9090909090909092
+@@ CCACAAUAUACCGCCACAGGCAUCAGAUGAAGAGGAAAAGGGAAGGGUGG 0.8181818181818182
+@@ CCAGAAUAUACCGCCACAGGCAUCAGAUGAAGAGGAAAAGGGAAGGUUGG 0.7272727272727273
+@@ CCAGAAUAUACCGCCACGGGCAUCAGAUGAAGAGGAAAAGGGAAGGUUGG 0.7272727272727273
+@@ CCAGAAUACACCGCCACGGGCAUCAGAUGAAGAGGAAAAGGGAAGGUUGG 0.7272727272727273
+@@ CCAGAAUACACCGCCACGGGCAUCAGAUGAAGAGGAGAAGGGAAGGUUGG 0.7272727272727273
+@@ CCAGAUUACACCGCCACGGGCAUCAGAUGAAGAGGAGAAGGGAAGGUUGG 0.7272727272727273
+@@ CCAGAUUACACCGCCACGGGCAUCAGAUGAAGGGGAGAAGGGAAGGUUGG 0.7272727272727273
+@@ CCAUAUUACACCGCCACGGGCAUCAGAUGAAGGGGAGAAGGGAAGGAUGG 0.7272727272727273
+@@ CCAUAUUACACCGCCACGGGCAUCACAUGAAGGGGAGAAGGGAAGGAUGG 0.7272727272727273
+@@ CCAUAUUACACCGCCACGGGCAUCACAUGAAGGGGAGAAGGGAAAGAUGG 0.7272727272727273
+@@ CCAUAUUACACCGCCACGGGCAUCACAUGAAGGGGAGAAGGGAGAGAUGG 0.7272727272727273
+@@ UCCCACACGACCGGCAUAGCCAGCAAUUGUAAAUAAUAUGGAAUAAGGGA 0.8181818181818181
+@@ UCCCACACGACCGGCAUAGCCAGCAAUUGUAAAUAUUAUGGAAUAAGGGA 0.8181818181818181
+@@ UCCCACACGACCGGCAUAGCCAGCAAUUGUAAAGAUUAUGGAAUAAGGGA 0.8181818181818181
+@@ UCCCACACGACCGGCAUUGCCAGCAAUUGUAAAGAUUAUGGAAUAAGGGA 0.8181818181818181
+@@ UCUCACACGACCGGCAUUGCCAGCAAUUGUAAAGAUUAUGGAAUAAGAGA 0.7272727272727273
+@@ UCUCACUCGACCGGCAUUGCCAGCAAUUGUAAAGAUUAUGGAAUAAGAGA 0.7272727272727273
+@@ UCUCACUCGACCGGCAUUGCCAGCAAUUGUAAAGAUUAUGGACUAAGAGA 0.7272727272727273
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAAACCAAAAAAAAACCAAAGACCCC 1.0
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAAACCAAAAAAAUACCAAAGACCCC 1.0
+@@ GGGGAAAAAAGGCGGAAACCGAGGAAAACCAAAAAAAUACCCAAGACCCC 1.0
+@@ GGGGAAUAAAGGCGGAAACCGAGGAAAACCAAAAAAAUACCCAAGACCCC 1.0
+@@ GGGAAAUAAAGGCGGAAACCGAGGAAAACCAAAAAAAUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAAUAAAGGCGGAAACCGAGGAAAACCAAAAAAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAAUAAAGGCGGAAACCGAGGAACACCAAAAAAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAAUAUAGGCGGAAACCGAGGAACACCAAAAAAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAAUAUAGGCGGAAACCGAGGAACACCAAAAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGAAACCGAGGAACACCAAAAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGAGACCGAGGAACACCAAAAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGAGACCGAGGAACACCAGAAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGACACCGAGGAACACCAGAAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGACACCGAGCAACAGCAGAAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGACACCGAGCAACAGCAGUAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGACACCGAGCAACAGCAGCAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GGGAAGUAUAGGCGGACACCGAGCAAGAGCAGCAGAGUACCCAAGAUCCC 0.9090909090909092
+@@ GAGAAGUAUAGGCGGACACCGAGCAAGAGCAGCAGAGUACCCAAGAUCUC 0.8181818181818181
+@@ GAGACGUAUAGGCGGACACCGAGCAAGAGCAGCAGAGUACCCAAGAUCUC 0.8181818181818181
+@@ GAGACGUAUAGGCGGACACCGAGCACGAGCAGCAGAGUACCCAAGAUCUC 0.8181818181818181
+@@ GAGACGUAUAGGCGGACACCGAGCGCGAGCAGCAGAGUACCCAAGAUCUC 0.8181818181818181
+@@ CCCGAAAAAACCCCUAAAAGGACCAGAAGGAAAACAAAAGGAAAAACGGG 0.9090909090909092
+@@ CCCGAAAAAGCCCCUAAAAGGACCAGAAGGAAAACAAAAGGAAAAACGGG 0.9090909090909092
+@@ CCCGAAAAAGCCCCUAAAAGGACCACAAGGAAAACAAAAGGAAAAACGGG 0.9090909090909092
+@@ CCCGAAAAAGCCCCUAAAAGGACCACAAGGAAAACAAAAGGAAAAAUGGG 0.8181818181818182
+@@ CCCGAAAAAGCCCCUAAAAGGACCACAAGGAGAACAAAAGGAAAAAUGGG 0.8181818181818182
+@@ CCCGAAAAAGCCCCUAAAAGGACCACAAGGAGUACAAAAGGAAAAAUGGG 0.8181818181818182
+@@ CCCGACAAAGCCCCUAAAAGGACCACAAGGAGUACAAAAGGAAAAAUGGG 0.8181818181818182
+@@ CCCGACAAAGCCCCUCAAAGGACCACAAGGAGUACAAAAGGAAAAAUGGG 0.8181818181818182
+@@ CCCGACAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAAAAAUGGG 0.8181818181818182
+@@ CCCGACAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAAUAAUGGG 0.8181818181818182
+@@ CCCGACAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACAAUGGG 0.8181818181818182
+@@ CCCGAUAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACAAUGGG 0.8181818181818182
+@@ CCCGAGAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACAAUGGG 0.8181818181818182
+@@ CCCUAGAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACAAAGGG 0.8181818181818182
+@@ CCCUAUAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACAAAGGG 0.8181818181818182
+@@ CCCUAUAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACACAGGG 0.8181818181818182
+@@ CCCUAGAAAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACACAGGG 0.8181818181818182
+@@ CCCUAGAUAGCCCCUCAGAGGACCACAAGGAGUACAAAAGGAACACAGGG 0.8181818181818182
+@@ CCCUAGAUAGCCCCUCAGAGGACCACAAGGAGUACAACAGGAACACAGGG 0.8181818181818182
+@@ GCCUAGAUAGCCCCUCAGAGGACCACAAGGAGUACAACAGGAACACAGGC 0.8181818181818182
+@@ GCCUAGAUAGCCCCUCAGAGGACCAGAAGGAGUACAACAGGAACACAGGC 0.8181818181818182
+@@ GCCUUGAUAGCCCCUCAGAGGACCAGAAGGAGUACAACAGGAACACAGGC 0.8181818181818182
+@@ GCCUUGAUAGCCCCUCAGAGGACCGGAAGGAGUACAACAGGAACACAGGC 0.8181818181818182
+@@ GCCUUGAUAGCCCCUCAGAGGACCGGUAGGAGUACAACAGGAACACAGGC 0.8181818181818182
+@@ GCCUUGAUAGCCCCUCAGAGGACCGGUAGGAGUACAGCAGGAACACAGGC 0.8181818181818182
+@@ GCCUUGAUAGCCCCUCAGAGGACCGGUAGGAGUACAGUAGGAACACAGGC 0.8181818181818182
+@@ GCCUUGAUAGCCCCUCAGAGGACCGGCAGGAGUACAGUAGGAACACAGGC 0.8181818181818182
+
+
+Elapsed time:                   86400.01571297646 secs.
+Number of function evaluations: 37161144
+----------------------------------------------------------------------
+
+
+---------------------------------------
+ FINISHED SUCCESSFULLY 
+---------------------------------------
