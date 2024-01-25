@@ -16,15 +16,14 @@ Briefly, the process of GREED-RNA follows the next loop:
    3. When a sequence with a GC-content for the base-pairs lower or equal than the required maximum (maxGC) is found that folds exactly like the target structure, and if the requested number of solutions has not yet been reached: |GC content − maxGC|, partition function, ensemble defect, −1·(probability over ensemble).
       
    The candidate sequence (current parent or offspring) that is located in the first position after sorting will be selected as the parent sequence for the next generation. In this way, the most appropriate criterion is used at all times, instead of always applying the same one.
-4. _Stagnation detection_. If after sorting the best (first) candidate sequence is the current parent sequence, the stagnation counter is incremented. When this counter reaches the maximum set, the parent sequence will be reinitialized to avoid local optima, and random mutation will be set. At this point it is also checked if the number
-of valid solutions found is at least the number of solutions requested. If so, the loop is terminated.
+4. _Stagnation detection_. If after sorting the best (first) candidate sequence is the current parent sequence, the stagnation counter is incremented. When this counter reaches the maximum set, the parent sequence will be reinitialized to avoid local optima, and random mutation will be set. At this point it is also checked if the number of valid solutions found is at least the number of solutions requested. If so, the loop is terminated.
 
 ![GREED-RNA-image](https://github.com/iARN-unex/GREED-RNA/assets/118007536/f3fefe23-8836-42b4-8748-003639d5932e)
 
 ### Comparative Study.
-The performance of GREED-RNA  was evaluated with the widely used Eterna100 benchmark in its V1 and V2 version with their corresponding Turner1999 and Turner2004 energy parameters sets.
+The performance of GREED-RNA  was evaluated with the widely used Eterna100 benchmark in its V1 and V2 version with their corresponding Turner1999(T99) and Turner2004(T04) energy parameters sets.
 
-For each Eterna100 structure in both versions of Eterna100 GREED-RNA was run 10 times. The parameter settings were: Stopping criterion of 86400 seconds (24 hours), maximum GC-content for the base-pairs of 0.48, mutation probability of 0.01, stagnation limit of 50 and number of solutions of 1. As explained above, the number of solutions applies only to those that meet the maximum GC-content for the base-pairs requirement.
+For each Eterna100 structure in both versions of Eterna100 GREED-RNA was run 10 times. The parameter settings were: Stopping criterion of 86400 seconds (24 hours), maximum GC-content for the base-pairs of 0.48, mutation probability of 0.01, stagnation limit of 50 and number of solutions of 1. As explained above, the number of solutions applies only to those that meet the maximum GC-content for the base-pairs requirement. Resulting sequences can be found in [data/output](data/output)     [data/V1-T99/Sequences-found](data/V1-T99/Sequences-found) and [data/V2-T04/Sequences-found](data/V2-T04/Sequences-found) folders.
 
 Results were compared against other RNA inverse folding methods.
 
