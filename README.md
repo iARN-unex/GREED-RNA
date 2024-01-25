@@ -27,3 +27,29 @@ The performance of GREED-RNA  was evaluated with the widely used Eterna100 bench
 For each Eterna100 structure in both versions of Eterna100 GREED-RNA was run 10 times. The parameter settings were: Stopping criterion of 86400 seconds (24 hours), maximum GC-content for the base-pairs of 0.48, mutation probability of 0.01, stagnation limit of 50 and number of solutions of 1. As explained above, the number of solutions applies only to those that meet the maximum GC-content for the base-pairs requirement.
 
 Results were compared against other RNA inverse folding methods.
+
+### Use guide
+To execute GREED-RNA in your local machine the [ViennaRNA package](https://www.tbi.univie.ac.at/RNA/) is needed.
+
+usage: ```GREED-RNA_.py [-h] [-t TARGET] [-n NSOLUTIONS] [--stopping STOPPING] [--seed SEED] [--stagnationLimit STAGNATIONLIMIT] [--pm PM]
+                     [--maxGC MAXGC] [--turner1999] [--turner2004]```
+
+Being the parameters:
+                     
+```
+-t, --target. Target structure in dot-bracket notation.
+-n, --nSolutions, type=int, default=1. Number of RNA sequences (solutions) to be found by the algorithm.
+--stopping, type=int, default=60. Stopping criterion in seconds.
+--seed, type=int. Seed for random numbers.
+--stagnationLimit, type=int, default=50. Number of iterations with no improvement before resetting the current solution to avoid local optima (by default 50 iterations).
+--pm, type=float, default=0.01. Mutation probability (by default 1%).
+--maxGC, type=float, default=0.48. Constraint the percentage of GC content (by default 0.48 (48%).
+--turner1999. Energy Model TURNER1999.
+--turner2004. Energy Model TURNER2004.
+```
+
+Only -t/--target and one between --turner1999 or --turner2004 are mandatory.
+
+
+
+
