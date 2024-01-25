@@ -1,6 +1,6 @@
 # GREED-RNA
 ### Overview
-GREED-RNA is a RNA design algorithm based on a simple greedy evolutionary strategy.
+GREED-RNA is a RNA design algorithm based on a simple greedy evolutionary strategy. It allows to obtain a desired number of sequences solution to the RNA inverse folding problem that meet a given maximum GC-content for the base-pairs, and also returns all the sequences found that solve the structure but do not meet that limit. It also allows to specify a stopping-criterion (maximum execution time), a stagnation limit and a mutation factor.
 
 The main feature is the use of several objective functions (Base-pair distance, Hamming distance, probability over ensemble, partition function, ensemble defect and GC-content of base-pairs) to select the best solution in each iteration, changing their weight according to the problem solving conditions.
 In addition, it incorporates a greedy initialization and mutation, which ease obtaining a sequence that folds as the target but also, to expand the search space, the mutation mode changes to random when stagnation is detected.
@@ -20,3 +20,10 @@ Briefly, the process of GREED-RNA follows the next loop:
 of valid solutions found is at least the number of solutions requested. If so, the loop is terminated.
 
 ![GREED-RNA-image](https://github.com/iARN-unex/GREED-RNA/assets/118007536/f3fefe23-8836-42b4-8748-003639d5932e)
+
+### Comparative Study.
+The performance of GREED-RNA  was evaluated with the widely used Eterna100 benchmark in its V1 and V2 version with their corresponding Turner1999 and Turner2004 energy parameters sets.
+
+For each Eterna100 structure in both versions of Eterna100 GREED-RNA was run 10 times. The parameter settings were: Stopping criterion of 86400 seconds (24 hours), maximum GC-content for the base-pairs of 0.48, mutation probability of 0.01, stagnation limit of 50 and number of solutions of 1. As explained above, the number of solutions applies only to those that meet the maximum GC-content for the base-pairs requirement.
+
+Results were compared against other RNA inverse folding methods.
