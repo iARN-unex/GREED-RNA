@@ -8,7 +8,7 @@ In addition, it incorporates a greedy initialization and mutation, which ease ob
 ### Algorithm
 Briefly, the process of GREED-RNA follows the next loop:
 
-1. _Greedy initialization_, when the parent sequence is empty.
+1. _Greedy initialization_, when the parent sequence is empty. All base-pairs are initialized as GC or CG and unpaired positions are all initialized as A. 
 2. _Mutation_. Default mode is greedy mutation. The position to which it will be applied is randomly selected, but in the case of base pairs only GC or CG are chosen, and an A is always placed at unpaired positions. The mode changes to random when stagnation is detected or the state of the algorithm reaches case 3.
 3. _Dynamic selection_. The current sequences of parent and offspring are sorted depending on the state of the algorithm and their values in the objective functions. Both sequences are first sorted according to their value in base-pair distance, thus minimizing it. To break the ties, the other objective functions are used sequentially. The second one is always Hamming distance, but the order of the remaining ones changes depending on the state of the algorithm:
    1. At the beginning of the process: −1·(Probability over ensemble), partition function, ensemble defect, GC-content.
