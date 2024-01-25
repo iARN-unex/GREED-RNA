@@ -23,7 +23,7 @@ Briefly, the process of GREED-RNA follows the next loop:
 ### Comparative Study.
 The performance of GREED-RNA  was evaluated with the widely used Eterna100 benchmark in its V1 and V2 version with their corresponding Turner1999(T99) and Turner2004(T04) energy parameters sets.
 
-For each Eterna100 structure in both versions of Eterna100 GREED-RNA was run 10 times. The parameter settings were: Stopping criterion of 86400 seconds (24 hours), maximum GC-content for the base-pairs of 0.48, mutation probability of 0.01, stagnation limit of 50 and number of solutions of 1. As explained above, the number of solutions applies only to those that meet the maximum GC-content for the base-pairs requirement. Resulting sequences can be found in [data/output](data/output)     [data/V1-T99/Sequences-found](data/V1-T99/Sequences-found) and [data/V2-T04/Sequences-found](data/V2-T04/Sequences-found) folders.
+For each Eterna100 structure in both versions of Eterna100 GREED-RNA was run 10 times. The parameter settings were: Stopping criterion of 86400 seconds (24 hours), maximum GC-content for the base-pairs of 0.48, mutation probability of 0.01, stagnation limit of 50 and number of solutions of 1. As explained above, the number of solutions applies only to those that meet the maximum GC-content for the base-pairs requirement. Resulting sequences can be found in [data/output](data/output)     [data/V1-T99/Sequences-found](data/V1-T99/Sequences-found) and [data/V2-T04/Sequences-found](data/V2-T04/Sequences-found) folders. Sequences beginning with ## comply with the GC-content for the base-pairs limit, while those beginning with @@ do not.
 
 Results were compared against other RNA inverse folding methods.
 
