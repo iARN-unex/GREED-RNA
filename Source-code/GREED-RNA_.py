@@ -209,7 +209,7 @@ def greedyMutation (sequence, pm, B, U):
 ############################################################################################################################################################################################################################################
 #       GREEDy Evolutionary Strategy
 ############################################################################################################################################################################################################################################
-def greed (target, maxGC, maxN, pm, maxStagnation, stop):
+def greed (target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
 
 	start = time.time()
 	B,U = getComponents_B_U(target)
@@ -218,6 +218,7 @@ def greed (target, maxGC, maxN, pm, maxStagnation, stop):
 
 	amount = max(round(len(target) * pm),1)
 	sequences_found = [] # Exactly folds into target, maxGC is not taken into account at this point
+	best_sequences_soFar = []
 	n_evals = 0
 	stagnation = 0
 	flagInit = False
@@ -247,7 +248,11 @@ def greed (target, maxGC, maxN, pm, maxStagnation, stop):
 		# GREEDY INITIALIZATION (first time and after re-start)
 		if parent_seq == '':
 			flagInit = True
-			parent_seq = greedyInitialization(target, B, U)
+			if len(best_sequences_soFar) > 0:
+				#print (best_sequences_soFar)
+				parent_seq = random.choice(best_sequences_soFar)[0]
+			else:
+				parent_seq = greedyInitialization(target, B, U)
 			_initEvalTime = time.time()
 			parent_eval = evaluate(parent_seq, target)
 			totalRuntimeVienna += (time.time() - _initEvalTime)
@@ -271,6 +276,14 @@ def greed (target, maxGC, maxN, pm, maxStagnation, stop):
 		results = []
 		results.append([parent_seq] + list(parent_eval))
 		results.append([offspr_seq] + list(offspr_eval))
+		best_sequences_soFar.append([parent_seq] + list(parent_eval))
+		best_sequences_soFar.append([offspr_seq] + list(offspr_eval))
+
+#		print ("")
+#		print ("************************************************ RESULTS *************************************************")
+#		print (str(len(sequences_found)))
+#		print ("**********************************************************************************************************")
+#		print ("")
 
 		# SELECTION DYNAMICALLY
 		#  (0) seq
@@ -285,10 +298,13 @@ def greed (target, maxGC, maxN, pm, maxStagnation, stop):
 		if flagBPD == True:
 			if flagGC == False:
 				results.sort(key=lambda x: (x[2], x[7], x[6], x[4], x[5], x[3]))
+				best_sequences_soFar = sorted([list(x) for x in set(tuple(x) for x in best_sequences_soFar)], key=lambda x: (x[2], x[7], x[6], x[4], x[5], x[3]))[:50]
 			else:
 				results.sort(key=lambda x: (x[2], x[7], abs(x[6]-maxGC), x[4], x[5], x[3]))
+				best_sequences_soFar = sorted([list(x) for x in set(tuple(x) for x in best_sequences_soFar)], key=lambda x: (x[2], x[7], abs(x[6]-maxGC), x[4], x[5], x[3]))[:50]
 		else:
 			results.sort(key=lambda x: (x[2], x[7], x[3], x[5], x[4], x[6]))
+			best_sequences_soFar = sorted([list(x) for x in set(tuple(x) for x in best_sequences_soFar)], key=lambda x: (x[2], x[7], x[3], x[5], x[4], x[6]))[:50]
 
 		if parent_seq != results[0][0] or flagInit == True:
 
@@ -333,8 +349,10 @@ def greed (target, maxGC, maxN, pm, maxStagnation, stop):
 
 			if minBPD > parent_eval[1] or (parent_eval[1] == 0 and minGC > parent_eval[5]):
 				minBPD = parent_eval[1]
-				if minGC > parent_eval[5]:
+				if parent_eval[1] == 0 and minGC > parent_eval[5]:
 					minGC = parent_eval[5]
+					print ("    -> Found sequence! " + "&& GC-content " + str(minGC) + " && Elapsed time:                   " + str(time.time() - start_time) + " secs.")
+					print ('\t -> The sequence: ' + str([parent_seq] + list(parent_eval)))
 		else:
 			stagnation += 1
 			if flagBPD == True and flagGC == True and minN >= maxN:
@@ -343,12 +361,12 @@ def greed (target, maxGC, maxN, pm, maxStagnation, stop):
 				print ("    -> Finished!! Elaapsed time:                   " + str(time.time() - start_time) + " secs.")
 				break
 			elif stagnation >= maxStagnation:
-				print ("\t >>> Resetting the solution to avoid local optima.")
+				print ("\t >>> Resetting the solution to avoid local optima. (" + str(maxStagnation) + " * " + str(stagnationInc) + " = " + str(maxStagnation*stagnationInc) + ")")
 				parent_seq = ''
 				parent_eval = []
 				randomMutationFlag = True
 				stagnation = 0
-				maxStagnation *= 1.2
+				maxStagnation *= stagnationInc
 
 	print ()
 	print ()
@@ -376,6 +394,7 @@ parser.add_argument('--seed', type=int, help='Seed for random numbers')
 parser.add_argument('--stagnationLimit', type=int, default=50, help='Number of iterations with no improvement before resetting the current solution to avoid local optima (by default 50 iterations).')
 parser.add_argument('--pm', type=float, default=0.01,  help='Mutation probability (by default 1%)')
 parser.add_argument('--maxGC', type=float, default=0.48,  help='Constraint the percentage of GC content (by default 0.48 (48%), as suggested by Kiriakidou et al. [10.1016/j.cell.2007.05.016])')
+parser.add_argument('--stagnationInc', type=float, default=0.20,  help='Constraint the increase of iterations for the next number of iterations with no improvements (stagnation)')
 parser.add_argument('--turner1999', action='store_true', help='Energy Model TURNER1999')
 parser.add_argument('--turner2004', action='store_true', help='Energy Model TURNER2004')
 
@@ -409,6 +428,8 @@ if args.maxGC:
 	maxGC = float(args.maxGC)
 if args.pm:
 	pm = float(args.pm)
+if args.stagnationInc:
+	stagnationInc = 1 + float(args.stagnationInc)
 
 print ()
 print ("-----------------------------------------------------------------------")
@@ -433,9 +454,10 @@ print (" * max. GC-cont.:    "  + str(maxGC))
 print (" * MODEL:            "  + model)
 print (" * MUTATION PROB:    "  + str(pm))
 print (" * STAGNATION LIMIT: "  + str(stagnationLimit))
+print (" * STAGNATION INC.:  "  + str(args.stagnationInc))
 print ("------------------------------------------------------------------------------------------------------------------")
 
-results, n_evals = greed(target, maxGC, maxN, pm, stagnationLimit, stop)
+results, n_evals = greed(target, maxGC, maxN, pm, stagnationLimit, stagnationInc, stop)
 
 print ()
 print ()
