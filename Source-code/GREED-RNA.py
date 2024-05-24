@@ -40,6 +40,7 @@ def getComponents_B_U(_struct, init=0):
     U_.extend(up_)
 
     return B_, U_
+    
 
 def printComponents_B_U(B, U):
 	print ("B: ", end='')
@@ -54,7 +55,7 @@ def printComponents_B_U(B, U):
 ############################################################################################################################################################################################################################################
 #       EVALUATION
 ############################################################################################################################################################################################################################################
-def calculate_pGC(sequence, structure):
+def calculate_pGC_(sequence, structure):
     B_, U_ = getComponents_B_U(structure)
 
     # Initialize count for CG and GC pairs
@@ -71,6 +72,14 @@ def calculate_pGC(sequence, structure):
     pGC = count_CG_GC / max(total_pairs, 1)
 
     return pGC
+
+def calculate_pGC(sequence):
+    gcCount = sequence.count('G') + sequence.count('C')
+    return gcCount / len(sequence)
+
+def calculate_dist_pGC(sequence, minGC, maxGC):
+    gcContent = calculate_pGC(sequence)
+    return max(minGC - gcContent, 0, gcContent - maxGC)
 
 def hammingDistance(str1, str2):
     if len(str1) != len(str2):
@@ -138,7 +147,7 @@ def evaluateM2DRNAS(s, t):
     
     return f_pf, f_ensemble, f_composition, f_bpdistance, s, mfe_struct, pGC
 
-def evaluate(s, t):
+def evaluate(s, t, minGC, maxGC):
     # Crear un compuesto de plegamiento con la secuencia de ARN dada
     fc = RNA.fold_compound(s)
 
@@ -163,8 +172,8 @@ def evaluate(s, t):
     # Calcular la distancia de Hamming entre la estructura mfe y la estructura objetivo
     f_dist = hammingDistance(mfe_struct, t)
 
-    # Calcular el valor de pGC para la estructura mfe
-    f_pGC = calculate_pGC(s, mfe_struct)
+    # Calcular el valor de pGC para la estructura mfe y estimar su desviación del rango (minGC,maxGC)
+    f_pGC = calculate_dist_pGC(s, minGC, maxGC)
 
     # Devolver los resultados como una tupla, sin redondear
     return mfe_struct, f_bpdistance / len(t), (-1.0) * f_prob, f_pf, f_ensemble, f_pGC, f_dist / len(t)
@@ -236,7 +245,7 @@ def greedyMutation (sequence, pm, B, U):
 ############################################################################################################################################################################################################################################
 #       GREEDy Evolutionary Strategy
 ############################################################################################################################################################################################################################################
-def greed(target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
+def greed(target, minGC, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
     start_time = time.time()
     B, U = getComponents_B_U(target)
     #totalRuntimeVienna = 0
@@ -251,7 +260,6 @@ def greed(target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
     flagGC = False
     randomMutationFlag = False
     minBPD = 999999
-    minGC = 999999
     minN = 0
 
     parent_seq = ''
@@ -275,7 +283,7 @@ def greed(target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
                 parent_seq = greedyInitialization(target, B, U)
             
             #_initEvalTime = time.time()
-            parent_eval = evaluate(parent_seq, target)
+            parent_eval = evaluate(parent_seq, target, minGC, maxGC)
             #totalRuntimeVienna += (time.time() - _initEvalTime)
             n_evals += 1
 
@@ -288,7 +296,7 @@ def greed(target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
         # Evaluate offspring
         if offspr_seq != parent_seq:
             #_initEvalTime = time.time()
-            offspr_eval = evaluate(offspr_seq, target)
+            offspr_eval = evaluate(offspr_seq, target, minGC, maxGC)
             #totalRuntimeVienna += (time.time() - _initEvalTime)
             n_evals += 1
         else:
@@ -306,7 +314,7 @@ def greed(target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
 	#  (3) f_prob
 	#  (4) f_p
 	#  (5) f_ensemble
-	#  (6) f_pGC
+	#  (6) f_pGC (distance to range minGC, maxGC)
 	#  (7) f_dist/len(t)
         if flagBPD:
             if not flagGC:
@@ -347,21 +355,17 @@ def greed(target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
                 if parent_seq not in sequences_found:
                     sequences_found.append(parent_seq)
 
-                if parent_eval[5] <= maxGC:
+                if parent_eval[5] == 0.0: # pGC is in the range (minGC, maxGC):
                     flagGC = True
                     randomMutationFlag = True
                     minN += 1
                     if minN < maxN:
                         print("\n\n    -> Satisfied GC-constraint! Elapsed time (2): " + str(time.time() - start_time) + " secs.\n\n")
-                        print(" (3) We found 1 sequence that folds exactly like the target structure with a GC-content lower than " + str(maxGC) + ". Let's find " + str(maxN - minN) + " more structures")
+                        print(" (3) We found 1 sequence that folds exactly like the target structure with a GC-content in the range [" + str(minGC) + ", " + str(maxGC) + "]. Let's find " + str(maxN - minN) + " more structures")
                         print("    -> ORDER: Min(Base-pair distance), min(Hamming distance), min(abs(GC-content-maxGC)), min(partition function), min(ensemble defect), max(probability over ensemble)\n\n")
 
-            if minBPD > parent_eval[1] or (parent_eval[1] == 0 and minGC > parent_eval[5]):
+            if minBPD > parent_eval[1]:
                 minBPD = parent_eval[1]
-                if parent_eval[1] == 0 and minGC > parent_eval[5]:
-                    minGC = parent_eval[5]
-                    print("    -> Found sequence! && GC-content " + str(minGC) + " && Elapsed time: " + str(time.time() - start_time) + " secs.")
-                    print('\t -> The sequence: ' + str([parent_seq] + list(parent_eval)))
         else:
             stagnation += 1
             if flagBPD and flagGC and minN >= maxN:
@@ -375,7 +379,6 @@ def greed(target, maxGC, maxN, pm, maxStagnation, stagnationInc, stop):
                 stagnation = 0
                 maxStagnation *= stagnationInc
 
-    print("\n\n%%% MINBPD " + str(minBPD))
     return sequences_found, n_evals
 
 ############################################################################################################################################################################################################################################
@@ -396,7 +399,8 @@ def main():
     parser.add_argument('--seed', type=int, help='Seed for random numbers')
     parser.add_argument('--stagnationLimit', type=int, default=50, help='Number of iterations with no improvement before resetting the current solution to avoid local optima (by default 50 iterations).')
     parser.add_argument('--pm', type=float, default=0.01, help='Mutation probability (by default 1%)')
-    parser.add_argument('--maxGC', type=float, default=0.48, help='Constraint the percentage of GC content (by default 0.48 (48%), as suggested by Kiriakidou et al. [10.1016/j.cell.2007.05.016])')
+    parser.add_argument('--maxGC', type=float, default=0.6, help='Constraint the percentage of GC content (by default min. 60%)')
+    parser.add_argument('--minGC', type=float, default=0.4, help='Constraint the percentage of GC content (by default min. 40%)')
     parser.add_argument('--stagnationInc', type=float, default=0.20, help='Constraint the increase of iterations for the next number of iterations with no improvements (stagnation)')
     parser.add_argument('--turner1999', action='store_true', help='Energy Model TURNER1999')
     parser.add_argument('--turner2004', action='store_true', help='Energy Model TURNER2004')
@@ -412,6 +416,11 @@ def main():
     stagnationLimit = int(args.stagnationLimit)
     maxN = int(args.nSolutions)
     maxGC = float(args.maxGC)
+    minGC = float(args.minGC)
+    if maxGC < minGC:
+      print ("*** WARNING *** maxGC < minGC; setting maxGC to minGC")
+      maxGC = minGC
+
     pm = float(args.pm)
     stagnationInc = 1 + float(args.stagnationInc)
 
@@ -448,26 +457,27 @@ def main():
     print(f" * SEED:             {args.seed}")
     print(f" * NO. OF SOLUTIONS: {maxN}")
     print(f" * max. GC-cont.:    {maxGC}")
+    print(f" * min. GC-cont.:    {minGC}")
     print(f" * MODEL:            {model}")
     print(f" * MUTATION PROB:    {pm}")
     print(f" * STAGNATION LIMIT: {stagnationLimit}")
     print(f" * STAGNATION INC.:  {args.stagnationInc}")
     print("------------------------------------------------------------------------------------------------------------------")
 
-    results, n_evals = greed(target, maxGC, maxN, pm, stagnationLimit, stagnationInc, stop)
+    results, n_evals = greed(target, minGC, maxGC, maxN, pm, stagnationLimit, stagnationInc, stop)
 
     print()
     print()
-    print(f"RNA sequences found with GC-content <= {maxGC}:")
+    print(f"RNA sequences found with GC-content in the range [{minGC},{maxGC}]:")
     other_rnaS = []
     for r in results:
-        pGC = calculate_pGC(r, target)
-        if pGC <= maxGC:
+        pGC = calculate_pGC(r)
+        if pGC >= minGC and pGC <= maxGC:
             print(f"## {r} {pGC}")
         else:
             other_rnaS.append(f"@@ {r} {pGC}")
     print()
-    print(f"RNA sequences found with GC-content > {maxGC}:")
+    print(f"RNA sequences found with GC-content lower than {minGC} or higher than {maxGC}:")
     for r in other_rnaS:
         print(r)
 
