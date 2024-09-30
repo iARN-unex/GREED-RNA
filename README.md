@@ -1,6 +1,6 @@
 # GREED-RNA
 
-N. Lozano-García, Á. Rubio-Largo and J. M. Granado-Criado, "A Simple yet Effective Greedy Evolutionary Strategy for RNA Design," in IEEE Transactions on Evolutionary Computation, doi: 10.1109/TEVC.2024.3461509.
+N. Lozano-García, Á. Rubio-Largo and J. M. Granado-Criado, "A Simple yet Effective Greedy Evolutionary Strategy for RNA Design," in *IEEE Transactions on Evolutionary Computation*, doi: [10.1109/TEVC.2024.3461509](https://doi.org/10.1109/TEVC.2024.3461509).
 
 ### Overview
 GREED-RNA is a RNA design algorithm based on a simple greedy evolutionary strategy. It allows to obtain a desired number of sequences solution to the RNA inverse folding problem  within a desired range of GC-content, and also returns all the sequences found that solve the structure but do not meet that requirement. It also allows to specify a stopping-criterion (maximum execution time), a stagnation limit and a mutation factor.
